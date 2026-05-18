@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://tkawen.com/og.svg" width="640" alt="TKAWEN — Seven APIs. One Platform. Build anything." />
+<img src="https://raw.githubusercontent.com/tkawen/tkawen-com/main/assets/og.png" width="640" alt="TKAWEN — Seven APIs. One Platform. Build anything." />
 
 # tkawen-com
 
