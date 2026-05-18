@@ -1,0 +1,36 @@
+[Unit]
+Description=tkawen-com — Sovereign Cloud marketing site (Rust + Axum + Maud)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tkawen
+Group=tkawen
+WorkingDirectory=/opt/tkawen-com
+ExecStart=/usr/local/bin/tkawen-com
+Environment=TKAWEN_ADDR=127.0.0.1:8088
+Environment=RUST_LOG=info,tower_http=info
+Restart=on-failure
+RestartSec=3s
+LimitNOFILE=65536
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+
+[Install]
+WantedBy=multi-user.target

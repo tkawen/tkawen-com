@@ -1,0 +1,14 @@
+/target
+**/*.rs.bk
+Cargo.lock
+.env
+.env.local
+.DS_Store
+Thumbs.db
+
+# Local-only screenshots from headless Edge — never commit
+screenshot*.png
+screen-*.png
+
+# Deploy tarball (binary blob, rebuild with build-source-tarball.ps1)
+deploy-package/tkawen-com-src.tar.gz

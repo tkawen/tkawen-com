@@ -1,0 +1,32 @@
+[package]
+name = "tkawen-com"
+version = "0.1.0"
+edition = "2021"
+authors = ["Hartem Yaakoub <DIRECTION@takawen.dz>"]
+description = "TKAWEN.com — Sovereign cloud for Algeria. Server-rendered in Rust (Axum + Maud)."
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/hartemyaakoub/tkawen-com"
+readme = "README.md"
+keywords = ["axum", "maud", "tkawen", "sovereign-cloud", "rust"]
+categories = ["web-programming::http-server"]
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[dependencies]
+axum = { version = "0.7", default-features = false, features = ["http1", "http2", "tokio", "macros", "query"] }
+tokio = { version = "1", features = ["rt-multi-thread", "net", "macros", "signal", "time", "fs"] }
+maud = { version = "0.26", features = ["axum"] }
+tower = { version = "0.5", default-features = false }
+tower-http = { version = "0.6", features = ["compression-gzip", "compression-br", "set-header", "trace"] }
+hyper = { version = "1", features = ["http1", "http2"] }
+rust-embed = { version = "8", features = ["compression"] }
+mime_guess = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
