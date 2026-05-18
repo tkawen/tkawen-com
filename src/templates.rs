@@ -1,7 +1,8 @@
-//! Maud templates for tkawen.com — Sovereign cloud for Algeria.
+//! Maud templates for tkawen.com — unified API platform marketing site.
+#![allow(dead_code)]
 
 use crate::content::{
-    APPS, COMPARE, CREDENTIALS, ICON_ARROW_LEFT, ICON_CHECK, LOGOS, Mark, METRICS, PILLARS,
+    Mark, APPS, COMPARE, CREDENTIALS, ICON_ARROW_LEFT, ICON_CHECK, LOGOS, METRICS, PILLARS,
     PROMISES, REPOS, TESTIMONIALS, TIERS,
 };
 use crate::schemas;

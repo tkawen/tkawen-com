@@ -1,4 +1,5 @@
-//! Content data for tkawen.com — pillars, apps, programs, sovereign promises.
+//! Content data for tkawen.com — pillars, apps, comparison, pricing, testimonials.
+#![allow(dead_code)]
 
 pub struct Pillar {
     pub number: u8,
@@ -165,17 +166,35 @@ pub struct Metric {
 }
 
 pub const METRICS: &[Metric] = &[
-    Metric { value: "7", label_ar: "API pillars" },
-    Metric { value: "4", label_ar: "SDKs (JS · PHP · Python · Go)" },
-    Metric { value: "200+", label_ar: "live merchants" },
-    Metric { value: "4,116+", label_ar: "verified users" },
-    Metric { value: "22", label_ar: "open-source repos" },
-    Metric { value: "<1ms", label_ar: "page render time" },
+    Metric {
+        value: "7",
+        label_ar: "API pillars",
+    },
+    Metric {
+        value: "4",
+        label_ar: "SDKs (JS · PHP · Python · Go)",
+    },
+    Metric {
+        value: "200+",
+        label_ar: "live merchants",
+    },
+    Metric {
+        value: "4,116+",
+        label_ar: "verified users",
+    },
+    Metric {
+        value: "22",
+        label_ar: "open-source repos",
+    },
+    Metric {
+        value: "<1ms",
+        label_ar: "page render time",
+    },
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   COMPARISON — TKAWEN vs single-pillar incumbents
-   ─────────────────────────────────────────────────────────────────── */
+COMPARISON — TKAWEN vs single-pillar incumbents
+─────────────────────────────────────────────────────────────────── */
 
 pub enum Mark {
     Yes,
@@ -259,8 +278,8 @@ pub const COMPARE: &[CompareRow] = &[
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   PRICING — 3 tiers, USD primary, multi-currency billing
-   ─────────────────────────────────────────────────────────────────── */
+PRICING — 3 tiers, USD primary, multi-currency billing
+─────────────────────────────────────────────────────────────────── */
 
 pub struct PricingTier {
     pub name_ar: &'static str,
@@ -327,8 +346,8 @@ pub const TIERS: &[PricingTier] = &[
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   OPEN SOURCE REPOSITORIES
-   ─────────────────────────────────────────────────────────────────── */
+OPEN SOURCE REPOSITORIES
+─────────────────────────────────────────────────────────────────── */
 
 pub struct Repo {
     pub name: &'static str,
@@ -426,8 +445,8 @@ pub const REPOS: &[Repo] = &[
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   TRUST & LEGAL CREDENTIALS (kept for compile; not rendered on home)
-   ─────────────────────────────────────────────────────────────────── */
+TRUST & LEGAL CREDENTIALS (kept for compile; not rendered on home)
+─────────────────────────────────────────────────────────────────── */
 
 pub struct Credential {
     pub label_ar: &'static str,
@@ -438,8 +457,8 @@ pub struct Credential {
 pub const CREDENTIALS: &[Credential] = &[];
 
 /* ───────────────────────────────────────────────────────────────────
-   CUSTOMER / PARTNER LOGOS
-   ─────────────────────────────────────────────────────────────────── */
+CUSTOMER / PARTNER LOGOS
+─────────────────────────────────────────────────────────────────── */
 
 pub struct LogoEntry {
     pub name: &'static str,
@@ -447,19 +466,43 @@ pub struct LogoEntry {
 }
 
 pub const LOGOS: &[LogoEntry] = &[
-    LogoEntry { name: "PharmaPro",          subtitle_ar: "Pharmacy ERP" },
-    LogoEntry { name: "MyStoq",             subtitle_ar: "200+ merchants" },
-    LogoEntry { name: "Algeria Certify",    subtitle_ar: "4,116+ users" },
-    LogoEntry { name: "LIQAA Meet",         subtitle_ar: "OSS video" },
-    LogoEntry { name: "Authentik",          subtitle_ar: "Identity layer" },
-    LogoEntry { name: "LiveKit",            subtitle_ar: "Realtime media" },
-    LogoEntry { name: "Chargily",           subtitle_ar: "Payment partner" },
-    LogoEntry { name: "Postfix · DKIM",     subtitle_ar: "Mail stack" },
+    LogoEntry {
+        name: "PharmaPro",
+        subtitle_ar: "Pharmacy ERP",
+    },
+    LogoEntry {
+        name: "MyStoq",
+        subtitle_ar: "200+ merchants",
+    },
+    LogoEntry {
+        name: "Algeria Certify",
+        subtitle_ar: "4,116+ users",
+    },
+    LogoEntry {
+        name: "LIQAA Meet",
+        subtitle_ar: "OSS video",
+    },
+    LogoEntry {
+        name: "Authentik",
+        subtitle_ar: "Identity layer",
+    },
+    LogoEntry {
+        name: "LiveKit",
+        subtitle_ar: "Realtime media",
+    },
+    LogoEntry {
+        name: "Chargily",
+        subtitle_ar: "Payment partner",
+    },
+    LogoEntry {
+        name: "Postfix · DKIM",
+        subtitle_ar: "Mail stack",
+    },
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   TESTIMONIALS (rolling marquee)
-   ─────────────────────────────────────────────────────────────────── */
+TESTIMONIALS (rolling marquee)
+─────────────────────────────────────────────────────────────────── */
 
 pub struct Testimonial {
     pub quote_ar: &'static str,
@@ -508,11 +551,12 @@ pub const TESTIMONIALS: &[Testimonial] = &[
 ];
 
 /* ───────────────────────────────────────────────────────────────────
-   ICONS
-   ─────────────────────────────────────────────────────────────────── */
+ICONS
+─────────────────────────────────────────────────────────────────── */
 
 /// Inline SVG: small check mark.
 pub const ICON_CHECK: &str = r#"<polyline points="20 6 9 17 4 12"/>"#;
 
 /// Inline SVG: arrow pointing right (LTR forward).
-pub const ICON_ARROW_LEFT: &str = r#"<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>"#;
+pub const ICON_ARROW_LEFT: &str =
+    r#"<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>"#;

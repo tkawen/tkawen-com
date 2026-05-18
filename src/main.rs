@@ -11,9 +11,7 @@ use axum::{
 use rust_embed::RustEmbed;
 use std::{net::SocketAddr, time::Instant};
 use tower_http::{
-    compression::CompressionLayer,
-    set_header::SetResponseHeaderLayer,
-    trace::TraceLayer,
+    compression::CompressionLayer, set_header::SetResponseHeaderLayer, trace::TraceLayer,
 };
 
 mod content;
@@ -105,7 +103,10 @@ async fn home() -> Response {
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
         .header("server-timing", timing)
-        .header("cache-control", "public, max-age=300, stale-while-revalidate=86400")
+        .header(
+            "cache-control",
+            "public, max-age=300, stale-while-revalidate=86400",
+        )
         .header("vary", "accept-encoding, accept-language")
         .body(Body::from(final_body))
         .unwrap()
@@ -141,10 +142,7 @@ async fn llms_full() -> impl IntoResponse {
 
 async fn favicon() -> impl IntoResponse {
     let svg = r##"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a0e1a"/><path d="M16 22h32M32 22v22" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/></svg>"##;
-    (
-        [(header::CONTENT_TYPE, "image/svg+xml")],
-        svg,
-    )
+    ([(header::CONTENT_TYPE, "image/svg+xml")], svg)
 }
 
 async fn og_image() -> impl IntoResponse {
