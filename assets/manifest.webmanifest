@@ -1,15 +1,15 @@
 {
-  "name": "TKAWEN — Sovereign Cloud for Algeria",
+  "name": "TKAWEN — Seven APIs. One Platform.",
   "short_name": "TKAWEN",
-  "description": "البنية التحتية الرقمية السيادية للجزائر — 7 طبقات، 4 تطبيقات، APIs بالعربية.",
+  "description": "Unified cloud platform: Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0a0e1a",
   "theme_color": "#0a0e1a",
-  "lang": "ar-DZ",
-  "dir": "rtl",
+  "lang": "en",
+  "dir": "ltr",
   "categories": ["business", "developer", "productivity"],
   "icons": [
     {

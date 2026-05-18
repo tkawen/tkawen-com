@@ -22,7 +22,6 @@
     </linearGradient>
   </defs>
 
-  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
   <rect width="1200" height="630" fill="url(#glow1)"/>
@@ -36,11 +35,11 @@
   <text x="180" y="135" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" letter-spacing="0.04em">TKAWEN</text>
 
   <!-- Headline -->
-  <text x="80" y="290" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="900" text-anchor="start">Sovereign Cloud</text>
-  <text x="80" y="370" fill="url(#gold)" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="900" text-anchor="start">for Algeria</text>
+  <text x="80" y="290" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="900" text-anchor="start">Seven APIs.</text>
+  <text x="80" y="370" fill="url(#gold)" font-family="system-ui, -apple-system, sans-serif" font-size="62" font-weight="900" text-anchor="start">One platform.</text>
 
   <!-- Sub -->
-  <text x="80" y="430" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500">7 pillars · 4 SaaS proofs · 22 OSS repos · billed in DZD · data in DZ</text>
+  <text x="80" y="430" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500">Identity · Connect · Pay · Commerce · Knowledge · Logistics · Developer</text>
 
   <!-- Pillar badges -->
   <g font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">
@@ -66,7 +65,6 @@
     <text x="898" y="497" fill="#fbbf24" text-anchor="middle">Developer</text>
   </g>
 
-  <!-- Footer line -->
-  <text x="80" y="570" fill="#64748b" font-family="ui-monospace, monospace" font-size="14">tkawen.com · Décret 20-254 · D-U-N-S 353551313 · AGPL-3.0</text>
+  <text x="80" y="570" fill="#64748b" font-family="ui-monospace, monospace" font-size="14">tkawen.com · One key · One SDK · One invoice</text>
   <text x="1120" y="570" fill="#64748b" font-family="ui-monospace, monospace" font-size="14" text-anchor="end">render: 0.119ms · Rust</text>
 </svg>

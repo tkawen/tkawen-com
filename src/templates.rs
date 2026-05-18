@@ -36,18 +36,17 @@ pub fn page(render_us: u128) -> Markup {
                 meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover";
                 meta name="color-scheme" content="dark light";
                 meta name="theme-color" content="#0a0e1a";
-                title { "TKAWEN — البنية الرقمية السيادية للجزائر" }
-                meta name="description" content="TKAWEN. البنية التحتية السيادية التي تشغّل الاقتصاد الرقمي الجزائري — الهوية، الاتصال، الدفع، التجارة، المعرفة، اللوجستيك، السحابة للمطوّرين. بياناتك في الجزائر، فوترتك بالدينار.";
+                title { "TKAWEN — Seven APIs. One Platform. Build anything." }
+                meta name="description" content="TKAWEN is a unified cloud platform: Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer — seven APIs that ship together, bill together, and integrate together. 200+ live merchants, 4,116+ verified users, 22 open-source repos.";
                 link rel="canonical" href="https://tkawen.com/";
                 link rel="icon" type="image/svg+xml" href="/favicon.svg";
-                // Cairo (Arabic) + JetBrains Mono (code)
                 link rel="preconnect" href="https://fonts.googleapis.com";
                 link rel="preconnect" href="https://fonts.gstatic.com" crossorigin;
                 link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap";
                 meta property="og:type" content="website";
-                meta property="og:locale" content="ar_DZ";
-                meta property="og:title" content="TKAWEN — Sovereign Cloud for Algeria";
-                meta property="og:description" content="البنية التحتية السيادية للاقتصاد الرقمي الجزائري.";
+                meta property="og:locale" content="en";
+                meta property="og:title" content="TKAWEN — Seven APIs. One Platform.";
+                meta property="og:description" content="A unified cloud platform: Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer. Seven APIs that ship together.";
                 meta property="og:url" content="https://tkawen.com/";
                 meta property="og:image" content="https://tkawen.com/og.svg";
                 meta property="og:image:width" content="1200";
@@ -72,11 +71,9 @@ pub fn page(render_us: u128) -> Markup {
                     (comparison_section())
                     (apps_section())
                     (testimonials_section())
-                    (sovereign_section())
                     (code_section())
                     (pricing_section())
                     (oss_section())
-                    (trust_section())
                     (cta_section())
                 }
                 (footer(render_us))
@@ -91,12 +88,12 @@ pub fn page(render_us: u128) -> Markup {
 pub fn not_found_page() -> Markup {
     html! {
         (DOCTYPE)
-        html lang="ar" dir="rtl" {
+        html lang="en" dir="ltr" {
             head {
                 meta charset="utf-8";
                 meta name="viewport" content="width=device-width, initial-scale=1";
                 meta name="theme-color" content="#0a0e1a";
-                title { "404 — صفحة غير موجودة · TKAWEN" }
+                title { "404 — Page not found · TKAWEN" }
                 meta name="robots" content="noindex";
                 link rel="icon" type="image/svg+xml" href="/favicon.svg";
                 link rel="preconnect" href="https://fonts.googleapis.com";
@@ -110,15 +107,15 @@ pub fn not_found_page() -> Markup {
                 div.nf-wrap {
                     div.nf-card {
                         div.nf-code { "404" }
-                        h1.nf-title { "هذه الصفحة غير موجودة." }
+                        h1.nf-title { "This page doesn't exist." }
                         p.nf-body {
-                            "ربّما الرابط قديم، أو فيه خطأ كتابيّ، أو صفحة لم تُكتَب بعد. الموقع كاملاً ينتظرك على "
-                            a href="/" style="color:var(--accent)" { "الصفحة الرئيسيّة" }
+                            "The link may be old, mistyped, or refer to something that hasn't been written yet. Everything else is on the "
+                            a href="/" style="color:var(--accent)" { "homepage" }
                             "."
                         }
                         div.nf-actions {
-                            a.btn-primary href="/" { "العودة إلى الرئيسيّة" }
-                            a.btn-ghost href="https://developer.tkawen.com" { "وثائق API" }
+                            a.btn-primary href="/" { "Back to home" }
+                            a.btn-ghost href="https://developer.tkawen.com" { "API docs" }
                         }
                     }
                 }
@@ -136,15 +133,15 @@ fn nav() -> Markup {
                     span.brand-text { "TKAWEN" }
                 }
                 nav.nav-links {
-                    a href="#stack" { "البنية" }
-                    a href="#apps" { "التطبيقات" }
-                    a href="#sovereign" { "السيادة" }
-                    a href="https://developer.tkawen.com" { "للمطوّرين" }
-                    a href="#pricing" { "الأسعار" }
+                    a href="#stack" { "Platform" }
+                    a href="#apps" { "Apps" }
+                    a href="#pricing" { "Pricing" }
+                    a href="https://developer.tkawen.com" { "Docs" }
+                    a href="#opensource" { "Open Source" }
                 }
                 div.nav-cta {
-                    a.btn-ghost href="https://id.tkawen.com" { "دخول" }
-                    a.btn-primary href="#cta" { "ابدأ مجاناً" }
+                    a.btn-ghost href="https://id.tkawen.com" { "Sign in" }
+                    a.btn-primary href="#cta" { "Get started" }
                 }
             }
         }
@@ -161,35 +158,35 @@ fn hero() -> Markup {
             div.hero-inner {
                 div.hero-eyebrow {
                     span.dot {}
-                    span { "البنية الرقمية السيادية للجزائر" }
+                    span { "Seven APIs. One platform. Build anything." }
                 }
                 h1.hero-title {
-                    span.hero-title-line1 { "البنية الرقمية" }
+                    span.hero-title-line1 { "The unified API for" }
                     " "
-                    span.hero-title-accent { "التي تعتمد عليها الجزائر" }
+                    span.hero-title-accent { "product teams." }
                 }
                 p.hero-sub {
-                    "سبع طبقات بنية تحتية متكاملة — الهوية، الاتصال، الدفع، التجارة، المعرفة، اللوجستيك، السحابة للمطوّرين. "
-                    strong { "بياناتك تبقى هنا. فوترتك بالدينار. واجهتك بالعربية." }
+                    "Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer — seven cloud APIs that ship together, bill together, and integrate together. "
+                    strong { "One SDK, one key, one dashboard. Build globally from day one." }
                 }
                 div.hero-cta {
                     a.btn-primary.btn-lg href="#cta" {
-                        "احصل على API key مجاني"
+                        "Get a free API key"
                         span.arrow { (svg_inline(ICON_ARROW_LEFT)) }
                     }
-                    a.btn-ghost.btn-lg href="#stack" {
-                        "اِكتشف الطبقات السبع"
+                    a.btn-ghost.btn-lg href="https://developer.tkawen.com" {
+                        "Read the docs"
                     }
                 }
                 div.hero-trust {
-                    span { "موثوقة من" }
-                    span.trust-item { "Décret 20-254" }
+                    span { "Powering" }
+                    span.trust-item { "200+ live merchants" }
                     span.trust-sep { "·" }
-                    span.trust-item { "ASEP" }
+                    span.trust-item { "4,116+ verified users" }
                     span.trust-sep { "·" }
-                    span.trust-item { "D-U-N-S 353551313" }
+                    span.trust-item { "22 OSS repos" }
                     span.trust-sep { "·" }
-                    span.trust-item { "NIF · R/C" }
+                    span.trust-item { "4 SDKs" }
                 }
             }
         }
@@ -215,9 +212,9 @@ fn stack_section() -> Markup {
     html! {
         section #stack .stack {
             div.section-head {
-                span.eyebrow { "البنية" }
-                h2 { "سبع طبقات. سيادة كاملة. منصّة واحدة." }
-                p { "كلّ ما يحتاجه مؤسّس جزائري لبناء منتج رقمي — في مكان واحد، خلف API واحدة." }
+                span.eyebrow { "Platform" }
+                h2 { "Seven services. One platform. One key." }
+                p { "Everything a product team needs to ship, served behind a single unified API with one SDK, one dashboard, and one invoice." }
             }
             div.stack-grid {
                 @for pillar in PILLARS {
@@ -233,7 +230,7 @@ fn stack_section() -> Markup {
                         h3.pillar-name { (pillar.name_ar) }
                         p.pillar-tagline { (pillar.tagline_ar) }
                         div.pillar-replaces {
-                            span.replaces-label { "يحلّ محلّ" }
+                            span.replaces-label { "Replaces" }
                             @for (i, r) in pillar.replaces.iter().enumerate() {
                                 @if i > 0 { span.replaces-sep { "·" } }
                                 span.replaces-item { (r) }
@@ -254,9 +251,9 @@ fn apps_section() -> Markup {
     html! {
         section #apps .apps {
             div.section-head {
-                span.eyebrow { "التطبيقات" }
-                h2 { "البنية تثبت نفسها — منتجات حقيقية تعمل اليوم." }
-                p { "أربعة منتجات من إنتاجنا، مبنيّة فوق الطبقات السبع، تخدم عملاء يدفعون اليوم." }
+                span.eyebrow { "Reference apps" }
+                h2 { "Four products built on the platform." }
+                p { "First-party SaaS products that prove every API works at production scale, with real customers and real workloads." }
             }
             div.apps-grid {
                 @for app in APPS {
@@ -271,7 +268,7 @@ fn apps_section() -> Markup {
                             (app.domain)
                         }
                         div.app-built {
-                            span.built-label { "مبني على:" }
+                            span.built-label { "Built on" }
                             @for n in app.built_on {
                                 span.built-chip { (format!("{:02}", n)) }
                             }
@@ -310,14 +307,14 @@ fn code_section() -> Markup {
         section.code {
             div.code-inner {
                 div.code-text {
-                    span.eyebrow { "للمطوّرين" }
-                    h2 { "سطر واحد. سيادة كاملة." }
-                    p { "تكامل بـ API REST بسيطة، SDKs بـ 4 لغات (PHP · Node · Python · Go)، مفتاح مجاني، وثائق بالعربية والإنجليزية والفرنسية." }
+                    span.eyebrow { "For developers" }
+                    h2 { "One line. One key. Every service." }
+                    p { "REST API documented with OpenAPI 3.1. Four official SDKs (JavaScript, PHP, Python, Go) under MIT. Free sandbox identical to production. Documentation in three languages." }
                     ul.code-features {
-                        li { span.check { (svg_inline(ICON_CHECK)) } " sandbox مجاني بلا بطاقة" }
-                        li { span.check { (svg_inline(ICON_CHECK)) } " فوترة عند الاستخدام، بالدينار" }
-                        li { span.check { (svg_inline(ICON_CHECK)) } " SDKs على GitHub — مفتوحة المصدر" }
-                        li { span.check { (svg_inline(ICON_CHECK)) } " status.tkawen.com — مراقبة 14 خدمة" }
+                        li { span.check { (svg_inline(ICON_CHECK)) } " Free sandbox, no credit card required" }
+                        li { span.check { (svg_inline(ICON_CHECK)) } " Pay-as-you-go billing in 13 currencies" }
+                        li { span.check { (svg_inline(ICON_CHECK)) } " All SDKs open source on GitHub (MIT)" }
+                        li { span.check { (svg_inline(ICON_CHECK)) } " Public status page with per-pillar uptime" }
                     }
                     a.btn-ghost href="https://developer.tkawen.com" {
                         "developer.tkawen.com"
@@ -333,12 +330,12 @@ fn code_section() -> Markup {
                     }
                     pre {
                         code {
-                            span.c-comment { "# Issue a video room (LIQAA Cloud)" } "\n"
+                            span.c-comment { "# Create a video room" } "\n"
                             span.c-keyword { "curl" } " -X " span.c-string { "POST" } " https://api.tkawen.com/v1/connect/rooms \\\n"
                             "  -H " span.c-string { "\"Authorization: Bearer $TKAWEN_KEY\"" } " \\\n"
                             "  -H " span.c-string { "\"Content-Type: application/json\"" } " \\\n"
-                            "  -d " span.c-string { "'{\"name\":\"reunion-strategique\",\"max\":12}'" } "\n\n"
-                            span.c-comment { "# → { \"room_id\":\"rm_8x2k…\", \"sdk_token\":\"eyJ…\" }" }
+                            "  -d " span.c-string { "'{\"name\":\"team-standup\",\"max_participants\":12}'" } "\n\n"
+                            span.c-comment { "# → { \"room_id\":\"rm_8x2k…\", \"join_url\":\"https://meet…\" }" }
                         }
                     }
                 }
@@ -351,7 +348,7 @@ fn logos_strip() -> Markup {
     html! {
         section.logos-strip {
             div.logos-inner {
-                p.logos-eyebrow { "موثوقة من" }
+                p.logos-eyebrow { "Powering" }
                 div.logos-row {
                     @for entry in LOGOS {
                         div.logo-item {
@@ -370,9 +367,9 @@ fn testimonials_section() -> Markup {
     html! {
         section.testimonials {
             div.section-head {
-                span.eyebrow { "ماذا يقولون" }
-                h2 { "بنية تخدم الناس فعلاً — لا فقط في صفحات هبوط." }
-                p { "اقتباسات حقيقيّة من العملاء والمستخدمين الذين يستعملون TKAWEN كلّ يوم." }
+                span.eyebrow { "What customers say" }
+                h2 { "Built for teams that ship." }
+                p { "Real quotes from teams using TKAWEN in production today across pharmacy, e-commerce, education, logistics, and developer tooling." }
             }
             div.marquee-wrap {
                 div.marquee {
@@ -428,15 +425,15 @@ fn comparison_section() -> Markup {
     html! {
         section #compare .compare {
             div.section-head {
-                span.eyebrow { "مقارنة" }
-                h2 { "ما الذي يميّز TKAWEN عمّا يستخدمه الجميع؟" }
-                p { "البنية الأمريكيّة والأوروبيّة ليست سيّئة — لكنّها لم تُصمَّم لمؤسّس جزائريّ. الفرق العمليّ ليس في التقنيّة، بل في الجغرافيا والقانون والعملة." }
+                span.eyebrow { "How it compares" }
+                h2 { "Built as one platform, not seven point solutions." }
+                p { "Most teams glue together five or six SaaS products to build a real application. TKAWEN ships them as one platform with one key, one SDK, and one invoice." }
             }
             div.compare-wrap {
                 table.compare-table {
                     thead {
                         tr {
-                            th.feature-col scope="col" { "الميّزة" }
+                            th.feature-col scope="col" { "Feature" }
                             th.tkawen-col scope="col" {
                                 span.brand-mark { "T" }
                                 span { "TKAWEN" }
@@ -467,15 +464,15 @@ fn pricing_section() -> Markup {
     html! {
         section #pricing .pricing {
             div.section-head {
-                span.eyebrow { "الأسعار" }
-                h2 { "ادفع عند الاستهلاك. بالدينار." }
-                p { "ابدأ مجاناً، لا توجد بطاقة مطلوبة. ادفع فقط حين تنطلق منصّتك. لا عقود سنويّة مفروضة، لا فوترة دولاريّة، لا مفاجآت." }
+                span.eyebrow { "Pricing" }
+                h2 { "Free to start. Pay as you grow." }
+                p { "Sandbox is free forever, no card. Builder is metered per call, billed monthly in your preferred currency. Enterprise is built for scale, regulated industries, and dedicated infrastructure." }
             }
             div.tiers {
                 @for tier in TIERS {
                     article.tier .(if tier.highlighted { "tier-highlight" } else { "" }) {
                         @if tier.highlighted {
-                            div.tier-badge { "الأكثر اختياراً" }
+                            div.tier-badge { "Most popular" }
                         }
                         h3.tier-name { (tier.name_ar) }
                         div.tier-price {
@@ -499,7 +496,7 @@ fn pricing_section() -> Markup {
                 }
             }
             p.pricing-note {
-                "كلّ الباقات تشمل البنية السياديّة (DZ data residency) + الفوترة بالدينار + الدعم الفنّي بالعربية."
+                "Every tier includes all 7 pillars, all 4 SDKs, OpenAPI spec, and full multi-currency invoicing."
             }
         }
     }
@@ -509,9 +506,9 @@ fn oss_section() -> Markup {
     html! {
         section #opensource .oss {
             div.section-head {
-                span.eyebrow { "مفتوح المصدر" }
-                h2 { "نُري الشيفرة. لا أقفال صامتة." }
-                p { "كلّ SDK، كلّ أداة، كلّ موقع تسويقيّ — متاح للقراءة على GitHub. لأنّ السيادة الحقيقيّة لا تختبئ خلف صندوق أسود." }
+                span.eyebrow { "Open source" }
+                h2 { "Every SDK and tool is on GitHub." }
+                p { "Inspect the code. Fork the SDKs. Run the reference apps locally. The platform's source of truth is public, because lock-in is a UX failure, not a moat." }
             }
             div.oss-grid {
                 @for r in REPOS {
@@ -537,7 +534,7 @@ fn oss_section() -> Markup {
             }
             div.oss-cta {
                 a.btn-ghost href="https://github.com/hartemyaakoub" {
-                    "اِعرض كلّ المستودعات على GitHub"
+                    "Browse all repositories on GitHub"
                     span.arrow { (svg_inline(ICON_ARROW_LEFT)) }
                 }
             }
@@ -574,15 +571,15 @@ fn cta_section() -> Markup {
     html! {
         section #cta .cta {
             div.cta-inner {
-                h2 { "ابنِ على الجزائر. ابنِ على TKAWEN." }
-                p { "افتح حساباً مجاناً، احصل على API key، وابدأ في الاستدعاء خلال خمس دقائق." }
+                h2 { "Start building in 60 seconds." }
+                p { "Create a free account, get a sandbox API key, and ship your first integration today." }
                 div.cta-buttons {
                     a.btn-primary.btn-lg href="https://id.tkawen.com/signup" {
-                        "أنشئ حسابك المجاني"
+                        "Create a free account"
                         span.arrow { (svg_inline(ICON_ARROW_LEFT)) }
                     }
                     a.btn-ghost.btn-lg href="mailto:DIRECTION@takawen.dz" {
-                        "أو احجز مكالمة 30 دقيقة"
+                        "Or book a 30-minute call"
                     }
                 }
             }
@@ -601,24 +598,19 @@ fn footer(render_us: u128) -> Markup {
                             " TKAWEN"
                         }
                         p.footer-tagline {
-                            "البنية الرقمية السيادية للجزائر — منذ 2026."
-                        }
-                        p.footer-legal {
-                            "Décret 20-254 · Arrêté 1275 MESRS · ASEP"
-                            br;
-                            "D-U-N-S 353551313 · NIF · R/C"
+                            "Seven cloud APIs. One platform. Ship anywhere."
                         }
                     }
                     div.footer-col {
-                        h4 { "البنية" }
+                        h4 { "Platform" }
                         ul {
                             @for p in PILLARS {
-                                li { a href=(format!("https://{}.tkawen.com", p.slug)) { (p.name_ar) } }
+                                li { a href=(format!("https://{}.tkawen.com", p.slug)) { (p.name_en) } }
                             }
                         }
                     }
                     div.footer-col {
-                        h4 { "التطبيقات" }
+                        h4 { "Apps" }
                         ul {
                             @for a_app in APPS {
                                 li { a href=(format!("https://{}", a_app.domain)) { (a_app.name) } }
@@ -626,34 +618,34 @@ fn footer(render_us: u128) -> Markup {
                         }
                     }
                     div.footer-col {
-                        h4 { "للمطوّرين" }
+                        h4 { "Developers" }
                         ul {
-                            li { a href="https://developer.tkawen.com" { "وثائق API" } }
-                            li { a href="https://status.tkawen.com" { "حالة الخدمات" } }
+                            li { a href="https://developer.tkawen.com" { "API docs" } }
+                            li { a href="https://status.tkawen.com" { "Status" } }
                             li { a href="https://github.com/hartemyaakoub" { "GitHub" } }
-                            li { a href="https://catalogue.tkawen.com" { "الكاتالوغ التكويني" } }
-                            li { a href="https://brand.tkawen.com" { "نظام الهوية البصرية" } }
+                            li { a href="https://api.tkawen.com/openapi.json" { "OpenAPI spec" } }
+                            li { a href="https://discord.gg/tkawen" { "Discord" } }
                         }
                     }
                     div.footer-col {
-                        h4 { "الشركة" }
+                        h4 { "Company" }
                         ul {
-                            li { a href="https://hartem.tkawen.com" { "عن المؤسس" } }
-                            li { a href="mailto:DIRECTION@takawen.dz" { "تواصل" } }
-                            li { a href="https://tkawen.com/legal" { "الشروط القانونية" } }
-                            li { a href="https://tkawen.com/privacy" { "سياسة الخصوصية" } }
+                            li { a href="#cta" { "Contact" } }
+                            li { a href="https://hartem.tkawen.com" { "About" } }
+                            li { a href="/legal" { "Terms" } }
+                            li { a href="/privacy" { "Privacy" } }
                         }
                     }
                 }
                 div.footer-bottom {
                     div.footer-perf {
-                        "هذه الصفحة رُندِرت في "
+                        "This page rendered in "
                         strong { (format!("{}μs", render_us)) }
-                        " بـ Rust + Axum + Maud."
+                        " · Rust + Axum + Maud"
                     }
                     div.footer-copy {
-                        "© 2026 TKAWEN — HARTEM YAAKOUB · "
-                        a href="https://github.com/hartemyaakoub/tkawen-com" { "مفتوح المصدر AGPL-3.0" }
+                        "© 2026 TKAWEN · "
+                        a href="https://github.com/hartemyaakoub/tkawen-com" { "Open source AGPL-3.0" }
                     }
                 }
             }

@@ -1,52 +1,38 @@
-# TKAWEN — Sovereign Cloud for Algeria
+# TKAWEN
 
-> The sovereign digital infrastructure that Algerian platforms depend on. Seven pillars (Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer Cloud) plus four first-party applications (PharmaPro, MyStoq, Algeria Certify, LIQAA Meet) running in production today. Data resides in Algeria, billing is in Algerian Dinar (DZD), the interface is Arabic-native.
+> A unified cloud platform: seven APIs (Identity, Connect, Pay, Commerce, Knowledge, Logistics, Developer) that ship together, bill together, and integrate together. One key, one SDK, one dashboard.
 
-## Identity
+## What it is
 
-- Founded by Hartem Yaakoub (Annaba, Algeria), 2026
-- Legal: Décret 20-254 + Arrêté 1275 MESRS + ASEP + D-U-N-S 353551313 + Algerian R/C and NIF
-- Founder: https://hartem.tkawen.com/
-- Status board: https://status.tkawen.com/ (14 services monitored 24/7)
+- Single platform replacing five-to-seven point solutions teams glue together (Auth0 + Twilio + Stripe + Shopify + Onfleet + Teachable + AWS console)
+- Four official SDKs: JavaScript/TypeScript, PHP, Python, Go (all MIT)
+- Free sandbox, no credit card required
+- Pay-as-you-go billing in 13 currencies
+- OpenAPI 3.1 spec for the entire surface
+- Open-source first-party reference apps (PharmaPro, MyStoq, Algeria Certify, LIQAA Meet)
+- 22 public repositories on GitHub
 
-## Stack (7 pillars)
+## The seven pillars
 
-- Identity — OIDC SSO + KYC + Trust Network. Replaces Auth0/Okta/Onfido.
-- Connect — Video, audio, SMS, WhatsApp APIs (LiveKit-backed). Replaces Twilio/Zoom/SendGrid.
-- Pay — DZD-native processing, DGI/CCP compliant. Beta. Replaces Stripe/Paddle.
-- Commerce — Multi-tenant e-commerce (200+ live merchants on mystoq.com). Replaces Shopify/Square.
-- Knowledge — LMS + QR-verifiable certificates under Décret 20-254 (4,116+ users on algeriacertify.com).
-- Logistics — Fleet GPS + DZ carrier integrations (Yalidine, CTM, Aramex). Replaces Onfleet/Bringg.
-- Developer — Unified API gateway, 4-language SDKs (PHP/Node/Python/Go), Arabic docs.
+1. Identity — OIDC SSO, KYC, trust signals
+2. Connect — video, voice, SMS, WhatsApp, email, TTS
+3. Pay — cards, wallets, transfers, recurring billing in 13 currencies
+4. Commerce — multi-tenant storefronts, catalog, checkout
+5. Knowledge — courses, AI tutors, verifiable certificates
+6. Logistics — fleet GPS + multi-carrier shipping
+7. Developer Cloud — gateway, SDKs, OpenAPI, sandbox, status
 
-## Why it exists
+## Production proof
 
-Every Algerian digital business currently pays Twilio + Auth0 + Stripe + AWS in USD with a foreign credit card, hosting data outside the country. TKAWEN provides the same primitives — but billed in DZD, hosted in DZ, integrated with local payment and shipping rails, with Arabic-native APIs and documentation.
-
-## Pricing tiers
-
-- Sandbox — Free, no card, 1,000 API calls/month per service
-- Builder — Metered DZD pricing from 0.5 DZD per call, includes 100 GB storage
-- Enterprise — Custom contracts for banks, ministries, universities, with on-premise option
-
-## Open source
-
-- liqaa-meet — full Zoom alternative (AGPL-3.0) at meet.liqaa.io
-- 4 LIQAA SDKs (MIT) at github.com/liqaa-cloud
-- This very site — tkawen-com — open under AGPL-3.0
-- Architecture decision records and compliance docs public
-
-## Contact
-
-- DIRECTION@takawen.dz
-- Office: Annaba, Algeria
+- 200+ live merchants on MyStoq
+- 4,116+ verified users on Algeria Certify
+- LIQAA Meet open-sourced under AGPL-3.0
+- Sub-millisecond page render times (Rust + Axum + Maud)
 
 ## Links
 
 - Homepage: https://tkawen.com/
-- Documentation: https://developer.tkawen.com/
+- Developer docs: https://developer.tkawen.com/
 - Status: https://status.tkawen.com/
 - GitHub: https://github.com/hartemyaakoub
-- Brand system: https://brand.tkawen.com/
-- Training catalogue: https://catalogue.tkawen.com/
 - llms-full.txt: https://tkawen.com/llms-full.txt
