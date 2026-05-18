@@ -44,7 +44,12 @@ async fn main() {
         .route("/llms.txt", get(llms))
         .route("/llms-full.txt", get(llms_full))
         .route("/favicon.svg", get(favicon))
+        .route("/og.svg", get(og_image))
+        .route("/manifest.webmanifest", get(manifest))
+        .route("/service-worker.js", get(service_worker))
+        .route("/a7f3d2b9e1c8h4k6m9n2p5q8r1t4v7w0.txt", get(indexnow_key))
         .route("/static/*path", get(static_file))
+        .fallback(get(not_found))
         .layer(CompressionLayer::new().gzip(true).br(true))
         .layer(SetResponseHeaderLayer::overriding(
             header::SERVER,
@@ -140,6 +145,49 @@ async fn favicon() -> impl IntoResponse {
         [(header::CONTENT_TYPE, "image/svg+xml")],
         svg,
     )
+}
+
+async fn og_image() -> impl IntoResponse {
+    (
+        [
+            (header::CONTENT_TYPE, "image/svg+xml"),
+            (header::CACHE_CONTROL, "public, max-age=604800, immutable"),
+        ],
+        include_str!("../assets/og.svg"),
+    )
+}
+
+async fn manifest() -> impl IntoResponse {
+    (
+        [(header::CONTENT_TYPE, "application/manifest+json")],
+        include_str!("../assets/manifest.webmanifest"),
+    )
+}
+
+async fn service_worker() -> impl IntoResponse {
+    (
+        [
+            (header::CONTENT_TYPE, "application/javascript"),
+            (header::CACHE_CONTROL, "no-cache"),
+        ],
+        include_str!("../assets/service-worker.js"),
+    )
+}
+
+async fn indexnow_key() -> impl IntoResponse {
+    (
+        [(header::CONTENT_TYPE, "text/plain; charset=utf-8")],
+        include_str!("../assets/indexnow-key.txt"),
+    )
+}
+
+async fn not_found() -> Response {
+    let body = templates::not_found_page().into_string();
+    Response::builder()
+        .status(StatusCode::NOT_FOUND)
+        .header(header::CONTENT_TYPE, "text/html; charset=utf-8")
+        .body(Body::from(body))
+        .unwrap()
 }
 
 async fn static_file(uri: Uri) -> Response {

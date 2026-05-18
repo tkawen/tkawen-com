@@ -1,0 +1,5 @@
+id,product,name,phone,email,wilaya,referred_by,first_contact_date,stage,last_action_date,next_action_date,next_action,objection,plan_target,plan_target_dzd,probability_pct,notes
+L001,PharmaPro,Dr Djihad,+213XXXXXXXXX,djihadlaperle@gmail.com,Annaba,founder,2026-05-05,PAID-PARTNER,2026-05-17,2026-06-01,Request 5 referrals,N/A,PARTNER lifetime,0,100,Founding partner - lifetime free
+L002,PharmaPro,EXAMPLE Dr Ahmed,+213555000001,ahmed@example.dz,Constantine,Dr Djihad,2026-05-19,COLD,2026-05-19,2026-05-22,Follow up (template 03),N/A,Essential,25000,30,"Test row - replace with real lead"
+L003,MyStoq,EXAMPLE Fatima Beauty,+213555000002,fatima@example.dz,Algiers,Instagram outreach,2026-05-19,COLD,2026-05-19,2026-05-23,Send demo video,Status quo: Instagram only,Builder,90000,20,"Test row"
+L004,Certify,EXAMPLE Ecole DEMI,info@example.dz,info@example.dz,Algiers,LinkedIn,2026-05-19,COLD,2026-05-19,2026-05-22,Personalize cold (template 11),N/A,Pro,50000,25,"Test row"

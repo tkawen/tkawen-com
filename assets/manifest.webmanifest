@@ -1,0 +1,36 @@
+{
+  "name": "TKAWEN — Sovereign Cloud for Algeria",
+  "short_name": "TKAWEN",
+  "description": "البنية التحتية الرقمية السيادية للجزائر — 7 طبقات، 4 تطبيقات، APIs بالعربية.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "lang": "ar-DZ",
+  "dir": "rtl",
+  "categories": ["business", "developer", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Developer Docs",
+      "short_name": "Docs",
+      "url": "https://developer.tkawen.com",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Status",
+      "short_name": "Status",
+      "url": "https://status.tkawen.com",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ]
+}

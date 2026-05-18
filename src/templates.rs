@@ -49,6 +49,15 @@ pub fn page(render_us: u128) -> Markup {
                 meta property="og:title" content="TKAWEN — Sovereign Cloud for Algeria";
                 meta property="og:description" content="البنية التحتية السيادية للاقتصاد الرقمي الجزائري.";
                 meta property="og:url" content="https://tkawen.com/";
+                meta property="og:image" content="https://tkawen.com/og.svg";
+                meta property="og:image:width" content="1200";
+                meta property="og:image:height" content="630";
+                meta property="og:image:alt" content="TKAWEN — Sovereign Cloud for Algeria";
+                meta name="twitter:card" content="summary_large_image";
+                meta name="twitter:title" content="TKAWEN — Sovereign Cloud for Algeria";
+                meta name="twitter:description" content="7 طبقات بنية تحتية سياديّة جزائريّة، بالدينار، بالعربية.";
+                meta name="twitter:image" content="https://tkawen.com/og.svg";
+                link rel="manifest" href="/manifest.webmanifest";
                 script type="application/ld+json" { (PreEscaped(schemas::organization_jsonld())) }
                 script type="application/ld+json" { (PreEscaped(schemas::services_jsonld())) }
                 style { (PreEscaped(CSS)) }
@@ -71,6 +80,48 @@ pub fn page(render_us: u128) -> Markup {
                     (cta_section())
                 }
                 (footer(render_us))
+                script {
+                    (PreEscaped("if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}));}"))
+                }
+            }
+        }
+    }
+}
+
+pub fn not_found_page() -> Markup {
+    html! {
+        (DOCTYPE)
+        html lang="ar" dir="rtl" {
+            head {
+                meta charset="utf-8";
+                meta name="viewport" content="width=device-width, initial-scale=1";
+                meta name="theme-color" content="#0a0e1a";
+                title { "404 — صفحة غير موجودة · TKAWEN" }
+                meta name="robots" content="noindex";
+                link rel="icon" type="image/svg+xml" href="/favicon.svg";
+                link rel="preconnect" href="https://fonts.googleapis.com";
+                link rel="preconnect" href="https://fonts.gstatic.com" crossorigin;
+                link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800;900&display=swap";
+                style { (PreEscaped(CSS)) }
+                style { ".nf-wrap{min-height:100vh;display:grid;place-items:center;padding:24px}.nf-card{max-width:520px;text-align:center}.nf-code{font-family:var(--font-mono);font-size:clamp(80px,15vw,160px);font-weight:900;line-height:1;background:linear-gradient(135deg,var(--accent),#fbbf24,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.05em;margin-bottom:18px}.nf-title{font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--white);margin-bottom:14px}.nf-body{color:var(--white-dim);font-size:16px;line-height:1.7;margin-bottom:32px}.nf-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}" }
+            }
+            body {
+                (nav())
+                div.nf-wrap {
+                    div.nf-card {
+                        div.nf-code { "404" }
+                        h1.nf-title { "هذه الصفحة غير موجودة." }
+                        p.nf-body {
+                            "ربّما الرابط قديم، أو فيه خطأ كتابيّ، أو صفحة لم تُكتَب بعد. الموقع كاملاً ينتظرك على "
+                            a href="/" style="color:var(--accent)" { "الصفحة الرئيسيّة" }
+                            "."
+                        }
+                        div.nf-actions {
+                            a.btn-primary href="/" { "العودة إلى الرئيسيّة" }
+                            a.btn-ghost href="https://developer.tkawen.com" { "وثائق API" }
+                        }
+                    }
+                }
             }
         }
     }
