@@ -20,7 +20,7 @@ panic = "abort"
 [dependencies]
 axum = { version = "0.7", default-features = false, features = ["http1", "http2", "tokio", "macros", "query"] }
 tokio = { version = "1", features = ["rt-multi-thread", "net", "macros", "signal", "time", "fs"] }
-maud = { version = "0.26", features = ["axum"] }
+maud = { version = "0.27", features = ["axum"] }
 tower = { version = "0.5", default-features = false }
 tower-http = { version = "0.6", features = ["compression-gzip", "compression-br", "set-header", "trace"] }
 hyper = { version = "1", features = ["http1", "http2"] }
