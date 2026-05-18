@@ -1,0 +1,33 @@
+<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="TKAWEN">
+  <defs>
+    <linearGradient id="pm-back" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0c1a3d"/>
+    </linearGradient>
+    <linearGradient id="pm-mid" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="pm-front" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="50%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <radialGradient id="pm-shine" cx="24" cy="6" r="11" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="pm-cast" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.75"/>
+      <feOffset dx="0.4" dy="1.2"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="2" y="20" width="18" height="18" rx="4.5" fill="url(#pm-back)"/>
+  <rect x="11" y="11" width="18" height="18" rx="4.5" fill="url(#pm-mid)"/>
+  <rect x="20" y="2" width="18" height="18" rx="4.5" fill="url(#pm-front)" filter="url(#pm-cast)"/>
+  <rect x="20" y="2" width="18" height="18" rx="4.5" fill="url(#pm-shine)"/>
+</svg>

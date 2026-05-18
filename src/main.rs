@@ -42,7 +42,9 @@ async fn main() {
         .route("/llms.txt", get(llms))
         .route("/llms-full.txt", get(llms_full))
         .route("/favicon.svg", get(favicon))
-        .route("/og.svg", get(og_image))
+        .route("/brand/mark.svg", get(brand_mark))
+        .route("/brand/logo.svg", get(brand_logo))
+        .route("/og.png", get(og_image))
         .route("/manifest.webmanifest", get(manifest))
         .route("/service-worker.js", get(service_worker))
         .route("/a7f3d2b9e1c8h4k6m9n2p5q8r1t4v7w0.txt", get(indexnow_key))
@@ -141,18 +143,46 @@ async fn llms_full() -> impl IntoResponse {
 }
 
 async fn favicon() -> impl IntoResponse {
-    let svg = r##"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a0e1a"/><path d="M16 22h32M32 22v22" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/></svg>"##;
-    ([(header::CONTENT_TYPE, "image/svg+xml")], svg)
-}
-
-async fn og_image() -> impl IntoResponse {
+    // Official TKAWEN brand mark (mark-flat for ≤32px per brand v3 rules).
     (
         [
             (header::CONTENT_TYPE, "image/svg+xml"),
             (header::CACHE_CONTROL, "public, max-age=604800, immutable"),
         ],
-        include_str!("../assets/og.svg"),
+        include_str!("../assets/brand/tkawen-mark-flat.svg"),
     )
+}
+
+async fn brand_mark() -> impl IntoResponse {
+    // Full mark with shine + cast filter, for larger surfaces.
+    (
+        [
+            (header::CONTENT_TYPE, "image/svg+xml"),
+            (header::CACHE_CONTROL, "public, max-age=604800, immutable"),
+        ],
+        include_str!("../assets/brand/tkawen-mark.svg"),
+    )
+}
+
+async fn brand_logo() -> impl IntoResponse {
+    // Mark + wordmark "tkawen".
+    (
+        [
+            (header::CONTENT_TYPE, "image/svg+xml"),
+            (header::CACHE_CONTROL, "public, max-age=604800, immutable"),
+        ],
+        include_str!("../assets/brand/tkawen-logo.svg"),
+    )
+}
+
+async fn og_image() -> Response {
+    // Official OG from brand v3 kit — PNG, 1200×630, with proper mark + wordmark.
+    let bytes = include_bytes!("../assets/og.png");
+    Response::builder()
+        .header(header::CONTENT_TYPE, "image/png")
+        .header(header::CACHE_CONTROL, "public, max-age=604800, immutable")
+        .body(Body::from(&bytes[..]))
+        .unwrap()
 }
 
 async fn manifest() -> impl IntoResponse {

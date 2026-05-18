@@ -1,0 +1,104 @@
+/*
+ * TKAWEN Brand · Color tokens (CSS custom properties)
+ * Drop into any product. Reference via var(--tkw-...).
+ * Mirror of tokens/colors.json.
+ */
+
+:root {
+  /* ═══════════════ NEUTRALS (Slate scale) ═══════════════ */
+  --tkw-neutral-0:   #ffffff;
+  --tkw-neutral-50:  #f8fafc;
+  --tkw-neutral-100: #f1f5f9;
+  --tkw-neutral-200: #e2e8f0;
+  --tkw-neutral-300: #cbd5e1;
+  --tkw-neutral-400: #94a3b8;
+  --tkw-neutral-500: #64748b;
+  --tkw-neutral-600: #475569;
+  --tkw-neutral-700: #334155;
+  --tkw-neutral-800: #1e293b;
+  --tkw-neutral-900: #0f172a;
+  --tkw-neutral-950: #020617;
+
+  /* ═══════════════ SURFACE TOKENS (light theme) ═══════════════ */
+  --tkw-surface-page:          var(--tkw-neutral-0);
+  --tkw-surface-muted:         var(--tkw-neutral-50);
+  --tkw-surface-card:          var(--tkw-neutral-0);
+  --tkw-surface-hover:         var(--tkw-neutral-100);
+  --tkw-surface-border:        var(--tkw-neutral-200);
+  --tkw-surface-border-strong: var(--tkw-neutral-300);
+
+  /* ═══════════════ TEXT TOKENS (light theme) ═══════════════ */
+  --tkw-text-primary:   var(--tkw-neutral-900);
+  --tkw-text-secondary: var(--tkw-neutral-600);
+  --tkw-text-tertiary:  var(--tkw-neutral-400);
+  --tkw-text-disabled:  var(--tkw-neutral-300);
+  --tkw-text-inverse:   var(--tkw-neutral-0);
+
+  /* ═══════════════ SEMANTIC ═══════════════ */
+  --tkw-success-ink:    #047857;
+  --tkw-success-bg:     #ecfdf5;
+  --tkw-success-border: #a7f3d0;
+  --tkw-success-solid:  #10b981;
+
+  --tkw-warning-ink:    #b45309;
+  --tkw-warning-bg:     #fffbeb;
+  --tkw-warning-border: #fde68a;
+  --tkw-warning-solid:  #f59e0b;
+
+  --tkw-error-ink:    #b91c1c;
+  --tkw-error-bg:     #fef2f2;
+  --tkw-error-border: #fecaca;
+  --tkw-error-solid:  #ef4444;
+
+  --tkw-info-ink:    #1d4ed8;
+  --tkw-info-bg:     #eff6ff;
+  --tkw-info-border: #bfdbfe;
+  --tkw-info-solid:  #3b82f6;
+
+  /* ═══════════════ TKAWEN PARENT BRAND ═══════════════ */
+  --tkw-brand-ink:     #1d4ed8;
+  --tkw-brand-back-1:  #3b82f6;
+  --tkw-brand-back-2:  #1d4ed8;
+  --tkw-brand-back-3:  #0c1a3d;
+  --tkw-brand-front-1: #93c5fd;
+  --tkw-brand-front-2: #60a5fa;
+  --tkw-brand-front-3: #1e3a8a;
+
+  /* ═══════════════ PRODUCT BRANDS ═══════════════ */
+  /* Reference these in product code via var(--tkw-mystoq-ink) etc.   */
+  --tkw-mystoq-ink:    #1d4ed8;  --tkw-mystoq-inverse:    #67e8f9;
+  --tkw-liqaa-ink:     #7c3aed;  --tkw-liqaa-inverse:     #f9a8d4;
+  --tkw-certify-ink:   #047857;  --tkw-certify-inverse:   #6ee7b7;
+  --tkw-pharmapro-ink: #15803d;  --tkw-pharmapro-inverse: #86efac;
+  --tkw-studio-ink:    #b45309;  --tkw-studio-inverse:    #fde68a;
+  --tkw-voice-ink:     #86198f;  --tkw-voice-inverse:     #f5d0fe;
+  --tkw-trust-ink:     #0284c7;  --tkw-trust-inverse:     #7dd3fc;
+  --tkw-connect-ink:   #4338ca;  --tkw-connect-inverse:   #c7d2fe;
+  --tkw-academy-ink:   #0284c7;  --tkw-academy-inverse:   #bae6fd;
+  --tkw-id-ink:        #334155;  --tkw-id-inverse:        #e2e8f0;
+}
+
+/* ═══════════════ DARK THEME OVERRIDES ═══════════════ */
+[data-theme="dark"], .dark {
+  --tkw-surface-page:          var(--tkw-neutral-950);
+  --tkw-surface-muted:         var(--tkw-neutral-900);
+  --tkw-surface-card:          var(--tkw-neutral-800);
+  --tkw-surface-hover:         var(--tkw-neutral-700);
+  --tkw-surface-border:        rgba(255,255,255,0.08);
+  --tkw-surface-border-strong: rgba(255,255,255,0.16);
+
+  --tkw-text-primary:   var(--tkw-neutral-50);
+  --tkw-text-secondary: var(--tkw-neutral-400);
+  --tkw-text-tertiary:  var(--tkw-neutral-500);
+  --tkw-text-disabled:  var(--tkw-neutral-700);
+  --tkw-text-inverse:   var(--tkw-neutral-900);
+
+  --tkw-success-bg:     rgba(16,185,129,0.12);
+  --tkw-success-border: rgba(16,185,129,0.32);
+  --tkw-warning-bg:     rgba(245,158,11,0.12);
+  --tkw-warning-border: rgba(245,158,11,0.32);
+  --tkw-error-bg:       rgba(239,68,68,0.12);
+  --tkw-error-border:   rgba(239,68,68,0.32);
+  --tkw-info-bg:        rgba(59,130,246,0.12);
+  --tkw-info-border:    rgba(59,130,246,0.32);
+}
