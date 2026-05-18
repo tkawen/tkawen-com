@@ -7,7 +7,7 @@
 - **Product:** TKAWEN
 - **Founded:** 2026
 - **Contact:** DIRECTION@takawen.dz
-- **GitHub:** github.com/hartemyaakoub, github.com/liqaa-cloud
+- **GitHub:** github.com/hartemyaakoub, github.com/hartemyaakoub
 
 ## What TKAWEN is
 
@@ -73,7 +73,7 @@ The four products built on the platform that prove every API works at production
 - **adrs** (CC-BY-4.0) — Architecture Decision Records
 - **compliance** (CC-BY-4.0) — public compliance documents, DPAs, security questionnaires
 
-All under github.com/hartemyaakoub and github.com/liqaa-cloud.
+All under github.com/hartemyaakoub and github.com/hartemyaakoub.
 
 ## Comparison
 
@@ -104,7 +104,7 @@ TKAWEN versus single-pillar incumbents:
 
 1. Sign up at id.tkawen.com (no credit card)
 2. Get a sandbox API key
-3. Install an SDK: `npm install @tkawen/sdk` or `pip install tkawen` or `composer require tkawen/sdk` or `go get github.com/liqaa-cloud/tkawen-go`
+3. Install an SDK: `npm install @tkawen/sdk` or `pip install tkawen` or `composer require tkawen/sdk` or `go get github.com/hartemyaakoub/tkawen-go`
 4. Make your first call: `tk.connect.rooms.create({ name: 'demo' })`
 5. When ready for production, add a payment method and switch to `sk_live_*` keys
 

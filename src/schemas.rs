@@ -15,7 +15,7 @@ pub fn organization_jsonld() -> String {
         "foundingDate": "2026",
         "sameAs": [
             "https://github.com/hartemyaakoub",
-            "https://github.com/liqaa-cloud",
+            "https://github.com/hartemyaakoub",
             "https://liqaa.io",
             "https://mystoq.com",
             "https://hartem.tkawen.com",
@@ -32,7 +32,7 @@ pub fn services_jsonld() -> String {
         "@graph": [
             {
                 "@type": "Service",
-                "@id": "https://identity.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/identity/#svc",
                 "name": "TKAWEN Identity",
                 "description": "OIDC single sign-on, KYC verification, and cross-product trust signals.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -40,7 +40,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://connect.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/connect/#svc",
                 "name": "TKAWEN Connect",
                 "description": "Video, voice, SMS, WhatsApp, email, and text-to-speech behind one API.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -48,7 +48,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://pay.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/pay/#svc",
                 "name": "TKAWEN Pay",
                 "description": "Cards, wallets, transfers, and recurring billing in 13 currencies.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -56,7 +56,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://commerce.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/commerce/#svc",
                 "name": "TKAWEN Commerce",
                 "description": "Multi-tenant storefronts, catalog, cart, checkout, and order orchestration.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -64,7 +64,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://knowledge.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/knowledge/#svc",
                 "name": "TKAWEN Knowledge",
                 "description": "Courses, AI tutors, and tamper-proof credentials with public QR verification.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -72,7 +72,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://logistics.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/logistics/#svc",
                 "name": "TKAWEN Logistics",
                 "description": "Fleet GPS, geofences, multi-carrier shipping quotes and labels.",
                 "provider": { "@id": "https://tkawen.com/#org" },
@@ -80,7 +80,7 @@ pub fn services_jsonld() -> String {
             },
             {
                 "@type": "Service",
-                "@id": "https://developer.tkawen.com/#svc",
+                "@id": "https://developer.tkawen.com/pillars/developer/#svc",
                 "name": "TKAWEN Developer Cloud",
                 "description": "Unified API gateway, four SDKs, OpenAPI spec, free sandbox, public status page.",
                 "provider": { "@id": "https://tkawen.com/#org" },

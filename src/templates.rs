@@ -142,7 +142,7 @@ fn nav() -> Markup {
                     a href="#opensource" { "Open Source" }
                 }
                 div.nav-cta {
-                    a.btn-ghost href="https://id.tkawen.com" { "Sign in" }
+                    a.btn-ghost href="https://id.tkawen.com/signup" { "Sign in" }
                     a.btn-primary href="#cta" { "Get started" }
                 }
             }
@@ -238,8 +238,8 @@ fn stack_section() -> Markup {
                                 span.replaces-item { (r) }
                             }
                         }
-                        a.pillar-link href=(format!("https://{}.tkawen.com", pillar.slug)) {
-                            (format!("{}.tkawen.com", pillar.slug))
+                        a.pillar-link href=(format!("https://developer.tkawen.com/pillars/{}/", pillar.slug)) {
+                            (format!("developer.tkawen.com/pillars/{}/", pillar.slug))
                             span.arrow { (svg_inline(ICON_ARROW_LEFT)) }
                         }
                     }
@@ -610,7 +610,7 @@ fn footer(render_us: u128) -> Markup {
                         h4 { "Platform" }
                         ul {
                             @for p in PILLARS {
-                                li { a href=(format!("https://{}.tkawen.com", p.slug)) { (p.name_en) } }
+                                li { a href=(format!("https://developer.tkawen.com/pillars/{}/", p.slug)) { (p.name_en) } }
                             }
                         }
                     }
@@ -628,7 +628,7 @@ fn footer(render_us: u128) -> Markup {
                             li { a href="https://developer.tkawen.com" { "API docs" } }
                             li { a href="https://status.tkawen.com" { "Status" } }
                             li { a href="https://github.com/hartemyaakoub" { "GitHub" } }
-                            li { a href="https://api.tkawen.com/openapi.json" { "OpenAPI spec" } }
+                            li { a href="https://developer.tkawen.com/pillars/developer/" { "OpenAPI spec" } }
                             li { a href="https://discord.gg/tkawen" { "Discord" } }
                         }
                     }
@@ -650,7 +650,7 @@ fn footer(render_us: u128) -> Markup {
                     }
                     div.footer-copy {
                         "© 2026 TKAWEN · "
-                        a href="https://github.com/hartemyaakoub/tkawen-com" { "Open source AGPL-3.0" }
+                        a href="https://github.com/tkawen/tkawen-com" { "Open source AGPL-3.0" }
                     }
                 }
             }
