@@ -31,7 +31,7 @@ fn svg_inline(inner: &'static str) -> Markup {
 pub fn page(render_us: u128) -> Markup {
     html! {
         (DOCTYPE)
-        html lang="ar" dir="rtl" {
+        html lang="en" dir="ltr" {
             head {
                 meta charset="utf-8";
                 meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover";
