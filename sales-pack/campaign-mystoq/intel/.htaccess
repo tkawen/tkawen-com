@@ -1,0 +1,30 @@
+# Intel dashboard hardening.
+
+# Block any file in /data subdirectory from web access.
+RewriteEngine On
+RewriteRule ^data/ - [F,L]
+
+# Block dotfiles entirely.
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Block JSONL / log / secret files.
+<FilesMatch "\.(jsonl|log|secret|env|sqlite|db)$">
+  Require all denied
+</FilesMatch>
+
+# No directory listing.
+Options -Indexes
+
+# Default to index.
+DirectoryIndex index.php login.php
+
+# No caching of any intel page (live data).
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+  Header set Pragma "no-cache"
+  Header set X-Frame-Options "DENY"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
