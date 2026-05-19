@@ -1,0 +1,16 @@
+# Protect lead data + logs from public access.
+<FilesMatch "\.(jsonl|log)$">
+  Require all denied
+</FilesMatch>
+
+# Prevent directory listing.
+Options -Indexes
+
+# Default to index.php
+DirectoryIndex index.php
+
+# Cache nothing (personalised page).
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+  Header set Pragma "no-cache"
+</IfModule>

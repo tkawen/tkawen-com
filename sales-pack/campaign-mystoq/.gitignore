@@ -1,0 +1,12 @@
+lists/tkawen-users.csv
+lists/wave-*.csv
+lists/excluded.csv
+lists/opt-outs.log
+lists/opens.log
+lists/visits.log
+lists/leads.jsonl
+lists/_segmentation-summary.json
+logs/
+__pycache__/
+*.pyc
+.env

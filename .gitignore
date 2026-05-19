@@ -12,3 +12,31 @@ screen-*.png
 
 # Deploy tarball (binary blob, rebuild with build-source-tarball.ps1)
 deploy-package/tkawen-com-src.tar.gz
+
+# Screenshots from meet.liqaa.io testing — local only
+meet-desktop*.png
+meet-mobile*.png
+
+# ─── Sales pack PII + secrets — NEVER commit ─────────────────────
+# Real customer data extracted from tkawen.online (emails, phones, names)
+sales-pack/lists/*.csv
+sales-pack/lists/*.jsonl
+sales-pack/lists/*.log
+
+# Server-side extractor scripts contain hardcoded secret keys
+sales-pack/tools/
+
+# Per-campaign data + logs (PII: emails, phones, opens, leads)
+sales-pack/campaign-mystoq/lists/*.csv
+sales-pack/campaign-mystoq/lists/*.jsonl
+sales-pack/campaign-mystoq/lists/*.log
+sales-pack/campaign-mystoq/lists/_segmentation-summary.json
+sales-pack/campaign-mystoq/logs/
+sales-pack/campaign-mystoq/preview/
+sales-pack/campaign-mystoq/__pycache__/
+sales-pack/campaign-mystoq/**/__pycache__/
+
+# Keep template files (they have no real data)
+!sales-pack/trackers/leads.csv
+!sales-pack/campaign-mystoq/sales/top-20-prospects.template.csv
+
