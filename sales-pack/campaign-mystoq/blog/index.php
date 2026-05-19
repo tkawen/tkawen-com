@@ -6,6 +6,16 @@ header_remove('X-Powered-By');
 // In production this should be auto-discovered; for now hand-curated.
 $posts = [
     [
+        'slug' => 'best-shipping-companies-dz-2026',
+        'title' => 'أفضل 5 شركات توصيل في الجزائر 2026 — مقارنة كاملة',
+        'desc' => 'مقارنة Yalidine، CTM، Aramex، ZR Express، PostaTN — الأسعار، التغطية، السرعة. من تجربة 50+ تاجر.',
+        'pub' => '2026-05-19',
+        'mod' => '2026-05-19',
+        'read_min' => 8,
+        'tags' => ['شحن', 'Yalidine', 'CTM'],
+        'hero_color' => '#1d4ed8',
+    ],
+    [
         'slug' => 'edahabia-vs-cib-2026',
         'title' => 'Edahabia أم CIB في 2026؟ المقارنة الكاملة من تاجر استعمل الاثنين',
         'desc' => 'مقارنة بين بطاقتي الدفع الإلكتروني — الرسوم، التغطية، الأمان، التكامل مع المتاجر، والأنسب للتاجر مقابل الزبون.',
