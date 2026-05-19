@@ -46,10 +46,12 @@ def main():
     token = make_token(args.user_id, args.to)
     expires = (datetime.now() + timedelta(days=14)).strftime("%d/%m/%Y")
 
-    landing = "https://tkawen.online/mystoq-invite/?" + urlencode({
+    base_params = {
         "u": args.user_id, "n": args.name, "e": args.to,
         "y": args.year, "t": token, "v": "X",
-    })
+    }
+    landing = "https://tkawen.online/mystoq-invite/?" + urlencode(base_params)
+    stories = "https://tkawen.online/mystoq-invite/stories/?" + urlencode(base_params)
 
     out_files = []
     for variant, (kind, subject_tpl) in VARIANTS.items():
@@ -62,6 +64,7 @@ def main():
             "FIRST_NAME": args.name,
             "REG_YEAR": args.year,
             "LANDING_URL": landing.replace("v=X", f"v={variant}"),
+            "STORIES_URL": stories.replace("v=X", f"v={variant}"),
             "UNSUB_URL": f"https://tkawen.online/mystoq-invite/unsubscribe.php?u={args.user_id}&t={token}",
             "TRACK_PIXEL": f"https://tkawen.online/mystoq-invite/pixel.php?u={args.user_id}&v={variant}&t={token}",
             "EXPIRES_DATE": expires,

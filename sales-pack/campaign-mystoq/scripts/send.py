@@ -63,6 +63,7 @@ REPLY_TO = "yaakoub@tkawen.com"
 
 # Landing page URL (where the email CTA points)
 LANDING_BASE = "https://tkawen.online/mystoq-invite/"
+STORIES_BASE = "https://tkawen.online/mystoq-invite/stories/"
 UNSUB_BASE = "https://tkawen.online/mystoq-invite/unsubscribe.php"
 TRACK_BASE = "https://tkawen.online/mystoq-invite/pixel.php"  # 1x1 GIF
 
@@ -219,14 +220,16 @@ def main() -> int:
             continue
 
         token = make_token(user_id, email)
-        landing = LANDING_BASE + "?" + urlencode({
+        user_params = {
             "u": user_id,
             "n": first_name,
             "e": email,
             "y": reg_year,
             "t": token,
             "v": args.variant,
-        })
+        }
+        landing = LANDING_BASE + "?" + urlencode(user_params)
+        stories = STORIES_BASE + "?" + urlencode(user_params)
         unsub = UNSUB_BASE + "?" + urlencode({"u": user_id, "t": token})
         pixel = TRACK_BASE + "?" + urlencode({"u": user_id, "t": token, "v": args.variant})
 
@@ -234,6 +237,7 @@ def main() -> int:
             "FIRST_NAME": first_name,
             "REG_YEAR": reg_year or str(datetime.now().year),
             "LANDING_URL": landing,
+            "STORIES_URL": stories,
             "UNSUB_URL": unsub,
             "TRACK_PIXEL": pixel,
             "EXPIRES_DATE": expires,

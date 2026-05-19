@@ -35,14 +35,17 @@ def main():
 
     user_id = "test-000"
     token = make_token(user_id, args.to)
-    landing = "https://tkawen.online/mystoq-invite/?" + urlencode({
+    base_params = {
         "u": user_id, "n": args.name, "e": args.to, "y": "2024", "t": token, "v": args.variant,
-    })
+    }
+    landing = "https://tkawen.online/mystoq-invite/?" + urlencode(base_params)
+    stories = "https://tkawen.online/mystoq-invite/stories/?" + urlencode(base_params)
 
     ctx = {
         "FIRST_NAME": args.name,
         "REG_YEAR": "2024",
         "LANDING_URL": landing,
+        "STORIES_URL": stories,
         "UNSUB_URL": "https://tkawen.online/mystoq-invite/unsubscribe.php?u=test-000&t=" + token,
         "TRACK_PIXEL": "https://tkawen.online/mystoq-invite/pixel.php?u=test-000&t=" + token,
         "EXPIRES_DATE": (datetime.now() + timedelta(days=14)).strftime("%d/%m/%Y"),
