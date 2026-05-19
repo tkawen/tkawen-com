@@ -362,6 +362,32 @@ if ($q === 'sources') {
     exit;
 }
 
+// ─── alerts: read alerts.jsonl, dedupe by id, return top N ────
+if ($q === 'alerts') {
+    $path = I_DIR . '/alerts.jsonl';
+    $alerts = read_jsonl($path);
+    // Dedupe by id (latest wins)
+    $by_id = [];
+    foreach ($alerts as $a) $by_id[$a['id'] ?? ''] = $a;
+    unset($by_id['']);
+    $list = array_values($by_id);
+    // Sort: hot > warm > info, then newest
+    $sev_order = ['hot' => 0, 'warm' => 1, 'info' => 2];
+    usort($list, function ($a, $b) use ($sev_order) {
+        $sa = $sev_order[$a['severity'] ?? 'info'] ?? 9;
+        $sb = $sev_order[$b['severity'] ?? 'info'] ?? 9;
+        if ($sa !== $sb) return $sa - $sb;
+        return strcmp($b['ts'] ?? '', $a['ts'] ?? '');
+    });
+    echo json_encode([
+        'total' => count($list),
+        'hot_count' => count(array_filter($list, fn($a) => ($a['severity'] ?? '') === 'hot')),
+        'warm_count' => count(array_filter($list, fn($a) => ($a['severity'] ?? '') === 'warm')),
+        'alerts' => array_slice($list, 0, 15),
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 // ─── harvested: full lead pool from intel/data/leads.jsonl ────
 if ($q === 'harvested') {
     $leads = read_jsonl(I_DIR . '/leads.jsonl');

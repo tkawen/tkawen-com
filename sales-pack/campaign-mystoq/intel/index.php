@@ -252,6 +252,13 @@
     <div class="card counter accent-red"><div class="label">إلغاء اشتراك</div><div class="value" id="c-unsub">—</div><div class="delta">من القائمة</div></div>
   </section>
 
+  <!-- Active alerts (top priority) -->
+  <section class="card" id="alerts-section" style="margin-bottom:14px;display:none;">
+    <div class="card-title">🚨 تنبيهات نشطة <span class="badge" id="alerts-count">—</span></div>
+    <div class="alerts-list" id="alerts-list"></div>
+    <button class="alerts-refresh" onclick="runAutomations()" style="margin-top:14px;padding:8px 16px;background:rgba(6,182,212,.12);color:var(--cyan);border:1px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;">🔄 إعادة تحليل القواعد</button>
+  </section>
+
   <!-- Funnel + AI suggestions -->
   <section class="grid grid-2">
     <div class="card">
@@ -331,7 +338,7 @@
 
   async function refresh() {
     try {
-      const [sum, act, hot, vrt, ts, ai, src, harv] = await Promise.all([
+      const [sum, act, hot, vrt, ts, ai, src, harv, alr] = await Promise.all([
         fetch('api.php?q=summary').then(r => r.json()),
         fetch('api.php?q=activity').then(r => r.json()),
         fetch('api.php?q=hot_leads').then(r => r.json()),
@@ -340,7 +347,29 @@
         fetch('api.php?q=ai_suggest').then(r => r.json()),
         fetch('api.php?q=sources').then(r => r.json()),
         fetch('api.php?q=harvested').then(r => r.json()),
+        fetch('api.php?q=alerts').then(r => r.json()),
       ]);
+
+      // ─── Alerts panel ───
+      if (alr.alerts && alr.alerts.length > 0) {
+        document.getElementById('alerts-section').style.display = 'block';
+        document.getElementById('alerts-count').textContent = `${alr.hot_count} حار · ${alr.warm_count} دافئ`;
+        document.getElementById('alerts-list').innerHTML = alr.alerts.map(a => {
+          const sev = a.severity === 'hot' ? '🔥' : a.severity === 'warm' ? '⚡' : '💡';
+          const sevColor = a.severity === 'hot' ? 'var(--red)' : a.severity === 'warm' ? 'var(--amber)' : 'var(--cyan)';
+          const email = a.context && a.context.email ? trim(a.context.email, 30) : '';
+          return `<div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--card-2);border-radius:10px;border-inline-start:3px solid ${sevColor};margin-bottom:8px;">
+            <div style="font-size:18px;line-height:1.2;">${sev}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:700;font-size:13px;color:var(--text);margin-bottom:4px;">${a.title}</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.6;">${a.action}</div>
+              ${email ? `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px;direction:ltr;">${email}</div>` : ''}
+            </div>
+          </div>`;
+        }).join('');
+      } else {
+        document.getElementById('alerts-section').style.display = 'none';
+      }
 
       // ─── Top status banner ───
       const sent = sum.counters.sent_total;
@@ -487,6 +516,17 @@
     } catch (e) {
       console.error('refresh failed', e);
     }
+  }
+
+  async function runAutomations() {
+    const btn = event.target;
+    btn.disabled = true; btn.textContent = '⏳ جار التحليل…';
+    try {
+      await fetch('automations.php', { credentials: 'include' });
+      await refresh();
+      btn.textContent = '✓ تم';
+      setTimeout(() => { btn.textContent = '🔄 إعادة تحليل القواعد'; btn.disabled = false; }, 1500);
+    } catch (e) { btn.textContent = '✗ خطأ'; btn.disabled = false; }
   }
 
   refresh();
