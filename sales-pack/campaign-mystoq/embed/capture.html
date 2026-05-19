@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+  TKAWEN embed/capture.html — drop-in iframe widget for partner sites.
+
+  Embed pattern:
+    <iframe
+      src="https://tkawen.online/embed/capture.html?theme=light&promo=PARTNER01&headline=..."
+      width="100%" height="280" frameborder="0" loading="lazy"
+      style="border:0;display:block;">
+    </iframe>
+
+  Query params (all optional):
+    ?theme=light|dark
+    ?promo=CODE          — pre-fills promo code for attribution
+    ?source=partner-slug — what site embedded this
+    ?headline=...        — override "اشترك للحصول على..."
+    ?cta=...             — CTA button label
+    ?target=mystoq|liqaa — which product to push
+
+  Submits to /intel/capture.php and shows ✓ in place.
+-->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TKAWEN · اشترك</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{font-family:'Cairo',-apple-system,'Segoe UI',Tahoma,sans-serif;direction:rtl;text-align:right;-webkit-font-smoothing:antialiased}
+  body{padding:20px;background:transparent}
+  body.dark{color:#f8fafc}body.dark .box{background:#0f172a;border-color:#1e293b}
+  body.dark input{background:#020617;border-color:#1e293b;color:#f8fafc}
+  body.dark .meta a{color:#06b6d4}
+  body.light{color:#0f172a}body.light .box{background:#fff;border-color:#e2e8f0}
+  body.light input{background:#f8fafc;border-color:#e2e8f0;color:#0f172a}
+
+  .box{padding:22px 24px;border:1px solid;border-radius:12px;max-width:540px;margin:0 auto}
+  .brand{font-size:11px;font-weight:700;letter-spacing:.08em;color:#06b6d4;text-transform:uppercase;margin-bottom:10px}
+  h2{font-size:17px;font-weight:800;line-height:1.4;margin-bottom:8px}
+  .desc{font-size:13px;color:#64748b;line-height:1.6;margin-bottom:14px}
+  body.dark .desc{color:#94a3b8}
+
+  form{display:flex;gap:8px}
+  input{flex:1;padding:11px 14px;font-size:14px;border:1px solid;border-radius:8px;outline:none;font-family:inherit;direction:ltr;text-align:left}
+  input:focus{border-color:#06b6d4}
+  button{padding:11px 22px;background:linear-gradient(135deg,#06b6d4,#0891b2);color:#fff;
+    border:0;border-radius:8px;font-weight:700;cursor:pointer;font-family:inherit;font-size:14px;white-space:nowrap;transition:transform .15s}
+  button:hover{transform:translateY(-1px)}
+  button:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+  .trap{position:absolute;left:-9999px}
+
+  .ok{padding:18px;text-align:center;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;color:#10b981;font-weight:700;font-size:14px;margin-top:12px;display:none}
+  .ok.show{display:block}
+  .err{padding:12px;background:rgba(244,63,94,.1);color:#f43f5e;border-radius:6px;font-size:12px;margin-top:12px;display:none}
+  .err.show{display:block}
+
+  .meta{margin-top:10px;font-size:11px;color:#94a3b8;text-align:left;direction:ltr}
+  .meta a{color:#1d4ed8;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="brand" id="brand">TKAWEN</div>
+  <h2 id="headline">احصل على عرض حصري 90 يوم مجاناً</h2>
+  <div class="desc" id="desc">منصة MyStoq — متجر إلكتروني جزائري كامل. اترك بريدك ونرسل لك الرابط فورا.</div>
+  <form id="f" autocomplete="on">
+    <input type="email" name="email" placeholder="you@example.com" required autocomplete="email">
+    <input type="text" name="trap" class="trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit" id="btn">اشترك</button>
+  </form>
+  <div class="ok" id="ok">✓ تم! تحقق من بريدك خلال دقيقتين.</div>
+  <div class="err" id="err"></div>
+  <div class="meta">Powered by <a href="https://tkawen.online" target="_blank">TKAWEN</a></div>
+</div>
+
+<script>
+  const p = new URLSearchParams(location.search);
+  const theme = p.get('theme') === 'dark' ? 'dark' : 'light';
+  document.body.className = theme;
+
+  const headline = p.get('headline');
+  if (headline) document.getElementById('headline').textContent = decodeURIComponent(headline);
+  const desc = p.get('desc');
+  if (desc) document.getElementById('desc').textContent = decodeURIComponent(desc);
+  const cta = p.get('cta');
+  if (cta) document.getElementById('btn').textContent = decodeURIComponent(cta);
+
+  const source = p.get('source') || 'embed';
+  const promo = p.get('promo') || '';
+  const target = p.get('target') || 'mystoq';
+
+  const f = document.getElementById('f');
+  const ok = document.getElementById('ok');
+  const err = document.getElementById('err');
+  const btn = document.getElementById('btn');
+
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    err.classList.remove('show');
+    btn.disabled = true; btn.textContent = '...';
+
+    const fd = new FormData(f);
+    try {
+      const r = await fetch('https://tkawen.online/intel/capture.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        credentials: 'include',
+        body: JSON.stringify({
+          email: fd.get('email'),
+          source: 'embed-' + source,
+          page: '/embed/capture.html',
+          kind: 'embed_signup',
+          fields: { target: target, promo: promo, host: document.referrer },
+          utm_source: source,
+          utm_medium: 'embed-widget',
+          trap: fd.get('trap'),
+        }),
+      });
+      const d = await r.json();
+      if (d.ok) {
+        f.style.display = 'none';
+        ok.classList.add('show');
+        // Notify parent window for analytics
+        try { parent.postMessage({ kind: 'tkawen_embed_signup', email: fd.get('email') }, '*'); } catch(e){}
+      } else {
+        err.textContent = d.error === 'rate_limited' ? 'انتظر دقيقة وحاول مجددا' : 'خطأ — حاول مجددا';
+        err.classList.add('show');
+        btn.disabled = false; btn.textContent = cta ? decodeURIComponent(cta) : 'اشترك';
+      }
+    } catch (e) {
+      err.textContent = 'خطأ في الاتصال';
+      err.classList.add('show');
+      btn.disabled = false; btn.textContent = cta ? decodeURIComponent(cta) : 'اشترك';
+    }
+  });
+
+  // Pageview event for the embed itself
+  fetch('https://tkawen.online/intel/capture.php?event=1', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    credentials: 'include',
+    body: JSON.stringify({
+      kind: 'embed_view',
+      source: 'embed-' + source,
+      page: '/embed/capture.html',
+      referrer: document.referrer,
+    }),
+  }).catch(() => {});
+</script>
+</body>
+</html>

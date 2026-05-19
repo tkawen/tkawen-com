@@ -6,6 +6,16 @@ header_remove('X-Powered-By');
 // In production this should be auto-discovered; for now hand-curated.
 $posts = [
     [
+        'slug' => 'edahabia-vs-cib-2026',
+        'title' => 'Edahabia أم CIB في 2026؟ المقارنة الكاملة من تاجر استعمل الاثنين',
+        'desc' => 'مقارنة بين بطاقتي الدفع الإلكتروني — الرسوم، التغطية، الأمان، التكامل مع المتاجر، والأنسب للتاجر مقابل الزبون.',
+        'pub' => '2026-05-19',
+        'mod' => '2026-05-19',
+        'read_min' => 7,
+        'tags' => ['دفع إلكتروني', 'Edahabia', 'CIB'],
+        'hero_color' => '#d97706',
+    ],
+    [
         'slug' => 'shopify-vs-mystoq-2026',
         'title' => 'Shopify أم MyStoq للتاجر الجزائري في 2026؟ مقارنة كاملة',
         'desc' => 'تحليل صريح من تاجر جزائري جرب الاثنين. الأسعار الحقيقية بالدينار، الدفع، التوصيل، الدعم، والقرار النهائي.',

@@ -358,11 +358,18 @@
           const sev = a.severity === 'hot' ? '🔥' : a.severity === 'warm' ? '⚡' : '💡';
           const sevColor = a.severity === 'hot' ? 'var(--red)' : a.severity === 'warm' ? 'var(--amber)' : 'var(--cyan)';
           const email = a.context && a.context.email ? trim(a.context.email, 30) : '';
+          const hasLead = a.lead_id && a.lead_id.startsWith('l_');
+          const waBtn = hasLead
+            ? `<button onclick="openWaPitch('${a.lead_id}')" style="margin-inline-start:auto;padding:6px 14px;background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.3);border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">📱 WhatsApp</button>`
+            : '';
           return `<div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--card-2);border-radius:10px;border-inline-start:3px solid ${sevColor};margin-bottom:8px;">
             <div style="font-size:18px;line-height:1.2;">${sev}</div>
             <div style="flex:1;min-width:0;">
-              <div style="font-weight:700;font-size:13px;color:var(--text);margin-bottom:4px;">${a.title}</div>
-              <div style="font-size:12px;color:var(--muted);line-height:1.6;">${a.action}</div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="font-weight:700;font-size:13px;color:var(--text);flex:1;">${a.title}</div>
+                ${waBtn}
+              </div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">${a.action}</div>
               ${email ? `<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);margin-top:4px;direction:ltr;">${email}</div>` : ''}
             </div>
           </div>`;
@@ -515,6 +522,21 @@
       $('#last-refresh').textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     } catch (e) {
       console.error('refresh failed', e);
+    }
+  }
+
+  async function openWaPitch(leadId) {
+    try {
+      const r = await fetch('wa-pitch.php?lead_id=' + encodeURIComponent(leadId), { credentials: 'include' });
+      const d = await r.json();
+      if (d.wa_url) {
+        // Open in new tab — WhatsApp opens with message pre-filled
+        window.open(d.wa_url, '_blank');
+      } else {
+        alert('فشل توليد الرسالة: ' + (d.error || 'خطأ غير معروف'));
+      }
+    } catch (e) {
+      alert('خطأ في الاتصال');
     }
   }
 
