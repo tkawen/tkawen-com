@@ -110,11 +110,18 @@ pip install requests
 $env:RESEND_API_KEY = "re_xxxxxxxxxxxxx"
 ```
 
-### 3. mystoq.com/signup must accept `?promo=TKAWEN90`
-The signup page needs to:
-- Pre-fill email from `?email=`
-- Auto-apply 90-day free tier if `?promo=TKAWEN90` is present
-- Track UTM params for attribution
+### 3. mystoq.com/signup accepts `?promo=TKAWEN90`
+**DONE** (commit 1ea202c in mystoq-backend, 2026-05-19). Backend now:
+- Reads `?promo=CODE` from any URL via TrackPromoCode middleware
+- Accepts explicit `promo_code` POST field on registration
+- ApplyPromoCode sets trial_ends_at to now+90 days for TKAWEN90
+- Records the code + campaign on subscriptions table for attribution
+
+Frontend just needs to pass `promo_code: 'TKAWEN90'` in the register POST
+body when `?promo=TKAWEN90` is in the URL. The cookie fallback works even
+if the frontend forgets.
+
+Deploy: `php artisan migrate` on production after pulling.
 
 ---
 
