@@ -290,6 +290,20 @@
     </div>
   </section>
 
+  <!-- Sources + Harvested leads -->
+  <section class="grid grid-2-wide">
+    <div class="card">
+      <div class="card-title">آخر العملاء المحتملين <span class="badge" id="harv-total">—</span></div>
+      <div class="hot-list" id="harvested-list">
+        <div class="empty"><div class="empty-icon">🌱</div><div>لا عملاء محتملين بعد</div><div class="empty-hint">سيظهر هنا كل بريد يصلنا من try, tools, blog, إلخ</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">المصادر</div>
+      <div id="sources-list"><div class="empty"><div class="empty-icon">📡</div><div>—</div></div></div>
+    </div>
+  </section>
+
   <!-- Live activity feed full width -->
   <section class="card">
     <div class="card-title">تدفق النشاط المباشر <span class="badge" id="act-count">—</span></div>
@@ -317,13 +331,15 @@
 
   async function refresh() {
     try {
-      const [sum, act, hot, vrt, ts, ai] = await Promise.all([
+      const [sum, act, hot, vrt, ts, ai, src, harv] = await Promise.all([
         fetch('api.php?q=summary').then(r => r.json()),
         fetch('api.php?q=activity').then(r => r.json()),
         fetch('api.php?q=hot_leads').then(r => r.json()),
         fetch('api.php?q=per_variant').then(r => r.json()),
         fetch('api.php?q=timeseries').then(r => r.json()),
         fetch('api.php?q=ai_suggest').then(r => r.json()),
+        fetch('api.php?q=sources').then(r => r.json()),
+        fetch('api.php?q=harvested').then(r => r.json()),
       ]);
 
       // ─── Top status banner ───
@@ -425,6 +441,46 @@
           <span class="ai-icon">${s.icon}</span>
           <span class="ai-text">${s.text}</span>
         </div>`).join('');
+      }
+
+      // ─── Sources breakdown ───
+      const srcEntries = Object.entries(src.by_source || {});
+      if (srcEntries.length) {
+        const maxS = Math.max(...srcEntries.map(([,n]) => n), 1);
+        $('#sources-list').innerHTML = srcEntries.slice(0, 8).map(([name, n]) => {
+          const pct = (n / maxS * 100).toFixed(0);
+          const labels = {
+            'try-portal': 'Try Portal',
+            'tools-yalidine': 'حاسبة Yalidine',
+            'capture-test': 'اختبار',
+            'mystoq-invite': 'إيميل الحملة',
+            'blog': 'مدونة',
+            'unknown': 'غير معروف',
+          };
+          return `<div style="margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+              <span>${labels[name] || name}</span>
+              <span class="lat" style="color:var(--cyan);font-weight:700">${fmt(n)}</span>
+            </div>
+            <div class="funnel-bar"><div class="funnel-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div>
+          </div>`;
+        }).join('');
+      } else {
+        $('#sources-list').innerHTML = '<div class="empty"><div class="empty-icon">📡</div><div>لا عملاء بعد</div></div>';
+      }
+
+      // ─── Harvested leads (cross-subdomain) ───
+      if (harv.recent && harv.recent.length) {
+        $('#harv-total').textContent = fmt(harv.total);
+        $('#harvested-list').innerHTML = harv.recent.slice(0, 8).map(l => `<div class="hot">
+          <div class="hot-info">
+            <div class="hot-email">${trim(l.email, 30)}${l.name ? ' · ' + trim(l.name, 16) : ''}</div>
+            <div class="hot-stats">${l.source || '—'} · ${ago(l.last_seen)}${l.utm_campaign ? ' · ' + trim(l.utm_campaign, 18) : ''}</div>
+          </div>
+        </div>`).join('');
+      } else {
+        $('#harvested-list').innerHTML = '<div class="empty"><div class="empty-icon">🌱</div><div>لا عملاء محتملين بعد</div><div class="empty-hint">سيظهر هنا كل بريد يصلنا من try, tools, blog</div></div>';
+        $('#harv-total').textContent = '0';
       }
 
       $('#last-refresh').textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });

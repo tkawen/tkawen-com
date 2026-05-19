@@ -313,5 +313,85 @@ if ($q === 'ai_suggest') {
     exit;
 }
 
+// ─── sources: where harvested leads come from (cross-subdomain) ───
+if ($q === 'sources') {
+    $leads = read_jsonl(I_DIR . '/leads.jsonl');
+    $events = read_jsonl(I_DIR . '/events.jsonl');
+
+    // Dedupe leads by lead_id (latest wins)
+    $by_id = [];
+    foreach ($leads as $l) { $by_id[$l['lead_id'] ?? ''] = $l; }
+    $unique_leads = array_values($by_id);
+
+    $by_source = [];
+    foreach ($unique_leads as $l) {
+        $src = $l['source'] ?? 'unknown';
+        if (!$src) $src = 'unknown';
+        $by_source[$src] = ($by_source[$src] ?? 0) + 1;
+    }
+
+    $by_event_kind = [];
+    foreach ($events as $e) {
+        $k = $e['kind'] ?? 'unknown';
+        $by_event_kind[$k] = ($by_event_kind[$k] ?? 0) + 1;
+    }
+
+    // Top wilayas where harvested leads live
+    $by_wilaya = [];
+    $wilaya_map = [
+        '16'=>'الجزائر','19'=>'سطيف','25'=>'قسنطينة','31'=>'وهران','23'=>'عنابة',
+        '15'=>'تيزي وزو','6'=>'بجاية','9'=>'البليدة','35'=>'بومرداس','5'=>'باتنة',
+    ];
+    foreach ($unique_leads as $l) {
+        $w = $l['wilaya'] ?? '';
+        if (!$w) continue;
+        $name = $wilaya_map[$w] ?? "wilaya $w";
+        $by_wilaya[$name] = ($by_wilaya[$name] ?? 0) + 1;
+    }
+
+    arsort($by_source);
+    arsort($by_event_kind);
+    arsort($by_wilaya);
+
+    echo json_encode([
+        'total_unique_leads' => count($unique_leads),
+        'by_source' => $by_source,
+        'by_event_kind' => $by_event_kind,
+        'by_wilaya' => array_slice($by_wilaya, 0, 10, true),
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+// ─── harvested: full lead pool from intel/data/leads.jsonl ────
+if ($q === 'harvested') {
+    $leads = read_jsonl(I_DIR . '/leads.jsonl');
+    $by_id = [];
+    foreach ($leads as $l) { $by_id[$l['lead_id'] ?? ''] = $l; }
+    $unique = array_values($by_id);
+
+    // Sort newest first
+    usort($unique, fn($a, $b) => strcmp($b['last_seen'] ?? '', $a['last_seen'] ?? ''));
+
+    echo json_encode([
+        'total' => count($unique),
+        'recent' => array_slice(array_map(function($l) {
+            return [
+                'lead_id'    => $l['lead_id'] ?? '',
+                'email'      => $l['email'] ?? '',
+                'name'       => $l['name'] ?? '',
+                'phone'      => $l['phone'] ?? '',
+                'wilaya'     => $l['wilaya'] ?? '',
+                'source'     => $l['source'] ?? '',
+                'first_seen' => $l['first_seen'] ?? '',
+                'last_seen'  => $l['last_seen'] ?? '',
+                'utm_source' => $l['utm']['source'] ?? '',
+                'utm_campaign' => $l['utm']['campaign'] ?? '',
+                'touches'    => count($l['pages'] ?? []),
+            ];
+        }, $unique), 0, 20),
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 http_response_code(400);
-echo json_encode(['error' => 'unknown q', 'valid' => ['summary', 'activity', 'hot_leads', 'per_variant', 'timeseries', 'ai_suggest']]);
+echo json_encode(['error' => 'unknown q', 'valid' => ['summary', 'activity', 'hot_leads', 'per_variant', 'timeseries', 'ai_suggest', 'sources', 'harvested']]);

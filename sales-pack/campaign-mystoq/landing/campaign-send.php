@@ -70,12 +70,12 @@ const OPT_OUTS_FILE = __DIR__ . '/opt-outs.log';
 const RATE_LIMIT_FILE = __DIR__ . '/.rate-limit';
 
 const VARIANT_MAP = [
-    'A'   => ['file' => 'template-A-personal.html',   'subject' => '{name}، طريقة لتفتح مشروعك التجاريّ خلال 5 دقائق'],
-    'B'   => ['file' => 'template-B-benefit.html',    'subject' => '90 يوم متجر إلكترونيّ مجاناً — لك فقط كعضو TKAWEN'],
-    'C'   => ['file' => 'template-C-question.html',   'subject' => '{name}، هل فكّرتَ يوماً في بيع منتجات أونلاين؟'],
-    'FU1' => ['file' => 'followup-1-day3-bump.html',  'subject' => '{name}، هل وصلتك رسالتي يوم الأحد؟'],
-    'FU2' => ['file' => 'followup-2-day7-proof.html', 'subject' => '{name}، شاهد كيف فتحت سارة متجرها في 8 دقائق'],
-    'FU3' => ['file' => 'followup-3-day14-final.html','subject' => '{name}، آخر يوم — العرض ينتهي اليوم منتصف الليل'],
+    'A'   => ['file' => 'template-A-personal.html',   'subject' => '{name}، حل جديد من TKAWEN — متجرك الإلكتروني في 8 دقائق'],
+    'B'   => ['file' => 'template-B-benefit.html',    'subject' => 'TKAWEN تطلق MyStoq — 90 يوم مجانا لك كعضو'],
+    'C'   => ['file' => 'template-C-question.html',   'subject' => '{name}، هل فكرت يوما في بيع منتجات أونلاين؟'],
+    'FU1' => ['file' => 'followup-1-day3-bump.html',  'subject' => '{name}، هل وصلتك رسالتنا الأسبوع الماضي؟'],
+    'FU2' => ['file' => 'followup-2-day7-proof.html', 'subject' => '{name}، كيف فتحت سارة متجرها في 8 دقائق'],
+    'FU3' => ['file' => 'followup-3-day14-final.html','subject' => '{name}، اليوم آخر يوم — العرض ينتهي منتصف الليل'],
 ];
 
 // ─── AUTH ─────────────────────────────────────────────────────────
