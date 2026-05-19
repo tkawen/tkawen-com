@@ -10,14 +10,19 @@ the top 50 most-engaged prospects.
 
 | Asset | State |
 |-------|-------|
-| Landing page (https://tkawen.online/mystoq-invite/) | **LIVE** |
+| Landing page https://tkawen.online/mystoq-invite/ | **LIVE** |
+| Stories case-study page https://tkawen.online/mystoq-invite/stories/ | **LIVE** |
 | Form handler + tracking pixel + unsubscribe | **LIVE** |
 | 3 cold-email templates (A/B/C) | **READY** |
 | 3 follow-up templates (D+3, +7, +14) | **READY** |
 | 2 onboarding emails (D+0 welcome, +3 check-in) | **READY** |
 | User list segmentation (943 customers + 376 hot + 2,506 cold) | **DONE** |
-| Top-50 phone-call prospects | **DONE** (48 with phone) |
+| Top-50 phone-call prospects (48 phone-callable) | **DONE** |
 | 114 WhatsApp click-to-chat links | **READY** |
+| MyStoq backend `?promo=TKAWEN90` 90-day trial | **DONE** (mystoq-backend `1ea202c`) |
+| MyStoq frontend banner + URL pre-fill | **WIP** (local-only, user committing) |
+| 7-day social media amplification pack | **READY** |
+| Pull-logs + auto-followup automation | **READY** |
 | Pre-flight launch orchestrator | **GREEN** (6/7 — Resend key pending) |
 | First test email sent to founder inbox | **DONE** |
 
@@ -40,16 +45,19 @@ campaign-mystoq/
 │   ├── subjects.md                  ← 11 A/B subject variants
 │   └── plain-text-fallback.md
 ├── landing/  (deployed to tkawen.online/mystoq-invite/)
-│   ├── index.php          ← form, pre-filled from URL params
-│   ├── submit.php         ← captures lead -> mystoq.com/signup
-│   ├── pixel.php          ← 1×1 GIF, logs opens
-│   ├── unsubscribe.php    ← one-click opt-out
+│   ├── index.php           ← form, pre-filled from URL params
+│   ├── submit.php          ← captures lead -> mystoq.com/signup
+│   ├── pixel.php           ← 1×1 GIF, logs opens
+│   ├── unsubscribe.php     ← one-click opt-out
 │   ├── thanks.php · .htaccess
+│   └── stories/index.php   ← 3-merchant case study page (referenced by followup-2)
 ├── whatsapp/
-│   └── messages.md        ← 5 scripts: cold, pitch, last-day, welcome, activation
+│   └── messages.md         ← 5 scripts: cold, pitch, last-day, welcome, activation
 ├── sales/
-│   ├── phone-script.md    ← 15-min call script + objection handling
+│   ├── phone-script.md     ← 15-min call script + objection handling
 │   └── top-20-prospects.template.csv
+├── social/
+│   └── posts.md            ← 7-day amplification (FB/IG/LinkedIn/Twitter/groups/DMs)
 ├── scripts/
 │   ├── segment.py             ← splits user list into waves
 │   ├── send.py                ← bulk Resend sender (throttled, all 6 variants)
@@ -60,7 +68,10 @@ campaign-mystoq/
 │   ├── build-top-prospects.py ← curates top-50 from engagement data
 │   ├── launch.py              ← pre-flight + safe-launch orchestrator
 │   ├── warroom.py             ← daily funnel dashboard
-│   └── dashboard.py           ← basic stats from logs
+│   ├── dashboard.py           ← basic stats from logs
+│   ├── pull-logs.py           ← FTP-pull opens/visits/leads/opt-outs (env-creds)
+│   ├── auto-followup.py       ← chains pull-logs+filter+send for FU1/FU2/FU3
+│   └── scheduler-setup.md     ← Win Task Scheduler / cron docs for automation
 └── lists/
     ├── tkawen-users-engaged.csv     (3,827 — full data with engagement score)
     ├── wave-1-customers.csv         (943)
@@ -142,10 +153,13 @@ Shows the full funnel + tells you what to do today. Refresh each morning.
 - Day 0: warm-up 50 with variant A
 - Day 1: scale to 200 (A vs B test)
 - Day 2: finish 943 with winning variant
-- Day 4: follow-up 1 to non-openers
-- Day 8: follow-up 2 with case study to non-clickers
-- Day 15: follow-up 3 last-call to non-signups
+- Day +3: follow-up 1 to non-openers (`python auto-followup.py --base wave-1-customers --stage fu1`)
+- Day +7: follow-up 2 with case study to non-clickers (`--stage fu2`)
+- Day +14: follow-up 3 last-call to non-signups (`--stage fu3`)
 - Throughout: onboarding emails to anyone who signs up
+
+See `scripts/scheduler-setup.md` to automate Day +3/+7/+14 via Task Scheduler
+or cron so you don't have to remember to run them.
 
 ### Channel 2 — WhatsApp (114 phone-equipped users)
 - Open `lists/wa-links-phone-targets-pitch.csv` in Excel
