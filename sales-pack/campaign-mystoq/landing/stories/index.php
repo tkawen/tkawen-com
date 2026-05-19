@@ -15,7 +15,7 @@ $year = preg_replace('/[^0-9]/', '', $_GET['y'] ?? '');
 $token = preg_replace('/[^a-zA-Z0-9]/', '', substr($_GET['t'] ?? '', 0, 32));
 
 // Pass campaign params through to signup
-$signup_url = 'https://mystoq.com/signup?' . http_build_query([
+$signup_url = 'https://mystoq.com/dashboard/register?' . http_build_query([
     'promo' => 'TKAWEN90',
     'email' => $email,
     'utm_source' => 'tkawen',

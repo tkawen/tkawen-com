@@ -40,3 +40,7 @@ sales-pack/campaign-mystoq/**/__pycache__/
 !sales-pack/trackers/leads.csv
 !sales-pack/campaign-mystoq/sales/top-20-prospects.template.csv
 
+# Campaign secrets — server-only
+sales-pack/campaign-mystoq/landing/.secret
+sales-pack/campaign-mystoq/landing/.env
+

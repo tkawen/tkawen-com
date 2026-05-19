@@ -76,6 +76,6 @@ $params = http_build_query([
     'utm_content'  => $lead['user_id'],
 ]);
 
-// Use MyStoq signup URL (adjust if your signup path differs)
-header('Location: https://mystoq.com/signup?' . $params, true, 302);
+// MyStoq dashboard register URL — verified 2026-05-19
+header('Location: https://mystoq.com/dashboard/register?' . $params, true, 302);
 exit;

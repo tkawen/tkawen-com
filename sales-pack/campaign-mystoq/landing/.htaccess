@@ -1,5 +1,15 @@
-# Protect lead data + logs from public access.
-<FilesMatch "\.(jsonl|log)$">
+# Protect lead data + logs + secrets from public access.
+<FilesMatch "\.(jsonl|log|secret|env)$">
+  Require all denied
+</FilesMatch>
+
+# Block all dotfiles (.secret, .env, .htaccess itself, etc.)
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Block progress / rate-limit state files
+<FilesMatch "^\.progress|^\.rate-limit">
   Require all denied
 </FilesMatch>
 

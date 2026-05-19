@@ -4,61 +4,77 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="x-apple-disable-message-reformatting">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="color-scheme" content="light">
   <title>{{FIRST_NAME}}، هل وصلتك رسالتي يوم الأحد؟</title>
+  <style>
+    @media only screen and (max-width:480px) {
+      .wrap { padding:12px !important; }
+      .card { width:100% !important; border-radius:8px !important; }
+      .pad { padding:24px 16px !important; }
+      .body-p { font-size:14px !important; line-height:1.7 !important; }
+      .cta-btn { padding:14px 24px !important; font-size:14px !important; display:block !important; }
+      .footer-p { font-size:10px !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:0;background:#f8fafc;font-family:'Cairo',Tahoma,Arial,sans-serif;color:#0f172a;direction:rtl;text-align:right;">
-<div style="display:none;font-size:1px;color:#f8fafc;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Tahoma,Arial,sans-serif;color:#0f172a;direction:rtl;text-align:right;-webkit-text-size-adjust:100%;">
+
+<div style="display:none;font-size:1px;color:#f1f5f9;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
   ربّما فاتتك — متجر إلكترونيّ مجاناً 90 يوم
 </div>
 
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f8fafc;padding:32px 16px;">
-  <tr><td align="center">
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="540" style="max-width:540px;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(15,23,42,.06);">
-      <tr><td style="padding:36px 32px 28px 32px;">
-        <p style="margin:0 0 18px 0;font-size:16px;line-height:1.8;color:#0f172a;">السلام عليكم {{FIRST_NAME}}،</p>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f1f5f9;">
+<tr><td align="center" class="wrap" style="padding:24px 16px;">
 
-        <p style="margin:0 0 18px 0;font-size:15px;line-height:1.8;color:#334155;">
-          أرسلتُ لك رسالة قبل بضعة أيّام عن <strong>MyStoq</strong> ولم أرَ ردّاً، فأردتُ التأكّد أنّها وصلتك.
-        </p>
+  <table role="presentation" class="card" cellpadding="0" cellspacing="0" border="0" width="480" style="width:100%;max-width:480px;background:#ffffff;border-radius:12px;">
 
-        <p style="margin:0 0 22px 0;font-size:15px;line-height:1.8;color:#334155;">
-          لاباس إن لم تكن مهتمّاً الآن — لكنّ العرض (90 يوم متجر إلكترونيّ + إعداد كامل + WhatsApp مدمج، بدون بطاقة بنكيّة) ينتهي يوم <strong>{{EXPIRES_DATE}}</strong>،
-          وهو محصور بأعضاء TKAWEN فقط.
-        </p>
+    <tr><td class="pad" style="padding:32px 28px;">
 
-        <p style="margin:0 0 28px 0;font-size:15px;line-height:1.8;color:#334155;">
-          إن أردتَ فقط النظر فيه — هذه الرابطة:
-        </p>
+      <p class="body-p" style="margin:0 0 16px 0;font-size:15px;line-height:1.7;color:#0f172a;">السلام عليكم {{FIRST_NAME}}،</p>
 
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
-          <tr><td align="center" style="padding:0 0 28px 0;">
-            <a href="{{LANDING_URL}}" style="display:inline-block;background:#1d4ed8;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 36px;border-radius:10px;">
-              أرني العرض في 30 ثانية ←
-            </a>
-          </td></tr>
-        </table>
+      <p class="body-p" style="margin:0 0 16px 0;font-size:15px;line-height:1.7;color:#334155;">
+        أرسلتُ لكَ رسالة قبل بضعة أيّام عن <strong>MyStoq</strong> ولم أرَ ردّاً. أردتُ التّأكّد أنّها وصلتكَ.
+      </p>
 
-        <p style="margin:0 0 6px 0;font-size:14px;line-height:1.7;color:#475569;">
-          وإن كانت الإجابة لا — قل لي فقط «لا شكراً» وسأتوقّف. أعدك.
-        </p>
+      <p class="body-p" style="margin:0 0 20px 0;font-size:15px;line-height:1.7;color:#334155;">
+        لا بأس إن لم تكن مهتمّاً — لكنّ العرض (90 يوم مجاناً + إعداد كامل) ينتهي يوم
+        <strong>{{EXPIRES_DATE}}</strong>، وهو حصريّ لأعضاء TKAWEN.
+      </p>
 
-        <p style="margin:24px 0 0 0;font-size:14px;line-height:1.7;color:#0f172a;">
-          شكراً،<br>
-          <strong>يعقوب حرتام</strong><br>
-          <span style="color:#64748b;font-size:13px;">مؤسّس TKAWEN</span>
-        </p>
+      <!-- CTA -->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 20px 0;">
+      <tr><td align="center">
+        <a href="{{LANDING_URL}}" class="cta-btn" style="display:inline-block;padding:14px 28px;background:#1d4ed8;color:#ffffff !important;font-weight:700;font-size:14px;text-decoration:none;border-radius:8px;">
+          أرني العرض في 30 ثانية &nbsp;←
+        </a>
       </td></tr>
+      </table>
 
-      <tr><td style="padding:18px 32px 24px 32px;border-top:1px solid #f1f5f9;text-align:center;">
-        <p style="margin:0;font-size:11px;color:#94a3b8;line-height:1.6;">
-          هذه رسالة متابعة واحدة لعرض حصريّ —
-          <a href="{{UNSUB_URL}}" style="color:#94a3b8;text-decoration:underline;">لا أريد المزيد</a>
-        </p>
-      </td></tr>
-    </table>
-  </td></tr>
+      <p class="body-p" style="margin:0 0 14px 0;font-size:13px;line-height:1.7;color:#64748b;">
+        وإن كانت الإجابة لا — ردّ «لا شكراً» وسأتوقّف. أعدكَ.
+      </p>
+
+      <p style="margin:18px 0 0 0;font-size:14px;color:#0f172a;line-height:1.6;">
+        شكراً،<br>
+        <strong>يعقوب حرتام</strong>
+      </p>
+
+    </td></tr>
+
+    <tr><td class="pad" style="padding:14px 24px 16px;background:#f8fafc;border-top:1px solid #e2e8f0;text-align:center;">
+      <p class="footer-p" style="margin:0;font-size:11px;color:#94a3b8;line-height:1.6;">
+        رسالة متابعة واحدة لعرض حصريّ ·
+        <a href="{{UNSUB_URL}}" style="color:#94a3b8;text-decoration:underline;">لا أريد المزيد</a>
+      </p>
+    </td></tr>
+
+  </table>
+
+  <img src="{{TRACK_PIXEL}}" width="1" height="1" alt="" style="display:block;width:1px;height:1px;border:0;">
+
+</td></tr>
 </table>
 
-<img src="{{TRACK_PIXEL}}" alt="" width="1" height="1" style="display:block;border:0;outline:none;">
 </body>
 </html>

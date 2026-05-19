@@ -1,0 +1,9 @@
+# Deny ALL public access to this folder — contains user PII (emails).
+# Reachable only by server-side PHP scripts in the parent directory.
+Order Deny,Allow
+Deny from all
+
+# Also belt-and-braces in case Order/Deny isn't honored on Apache 2.4+
+<RequireAll>
+    Require all denied
+</RequireAll>
